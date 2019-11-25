@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {},
     "autoload": {
-        "Sunshinev\\Gii": "\\src"
+        "psr-4":{
+            "Sunshinev\\Gii\\": "\\src"
+        }
     },
     "extra": {
         "laravel": {
