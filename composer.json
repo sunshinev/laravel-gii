@@ -6,8 +6,9 @@
         }
     ],
     "description": "visual code generator tools gii for laravel",
-    "license": "MIT",
-    "require": {},
+    "require": {
+        "sunshienv/laravel-fe-render":"1.0.*"
+    },
     "autoload": {
         "psr-4":{
             "Sunshinev\\Gii\\": "\\src"
