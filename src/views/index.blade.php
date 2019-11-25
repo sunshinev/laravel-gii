@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Laravel gii</title>
-    <link rel="stylesheet" href="{{URL::asset('gii-assets/styles/iview.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('gii_assets/styles/iview.css')}}">
 </head>
 <body>
 <style scoped>
@@ -58,8 +58,8 @@
         </i-layout>
     </div>
 </div>
-<script src="{{URL::asset('gii-assets/vue.js')}}"></script>
-<script src="{{URL::asset('gii-assets/iview.js')}}"></script>
+<script src="{{URL::asset('gii_assets/vue.js')}}"></script>
+<script src="{{URL::asset('gii_assets/iview.js')}}"></script>
 @yield('assets')
 @section('new_vue')
 <script>
