@@ -41,6 +41,11 @@ The background page depends on the compiled app.js ["github:base-fe"] (https://g
 ## Installation
 
 ### Installation package
+
+```
+composer require sunshinev/laravel-fe-render -vvv
+```
+
 ```
 Composer require sunshinev/laravel-gii -vvv
 ```
