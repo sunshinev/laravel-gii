@@ -1,0 +1,63 @@
+<?php
+
+namespace {{observer_namespace}};
+
+use {{base_model_class_name}};
+
+class {{observer_class}}
+{
+    /**
+     * Handle the userinfo "created" event.
+     *
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function created({{base_model_class}} $model)
+    {
+
+    }
+
+    /**
+     * Handle the model "updated" event.
+     *
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function updated({{base_model_class}} $model)
+    {
+        //
+    }
+
+    /**
+     * Handle the model "deleted" event.
+     *
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function deleted({{base_model_class}} $model)
+    {
+        //
+    }
+
+    /**
+     * Handle the model "restored" event.
+     *
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function restored({{base_model_class}} $model)
+    {
+        //
+    }
+
+    /**
+     * Handle the model "force deleted" event.
+     *
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function forceDeleted({{base_model_class}} $model)
+    {
+        //
+    }
+}

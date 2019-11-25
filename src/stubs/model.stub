@@ -1,0 +1,141 @@
+<?php
+
+namespace {{model_namespace}};
+
+use {{base_model_class_name}};
+
+
+/**
+ * Class {{base_model_class}}Model
+ * @package {{model_namespace}}
+ */
+class {{base_model_class}}Model extends {{base_model_class}}
+{
+
+    /**
+     * 分页列表+支持检索
+     *
+     * @param $params
+     * @param int $perPage
+     * @return mixed
+     */
+    public static function getListPaging($params, $perPage = 10)
+    {
+        $cond = self::filterParams($params);
+
+        return self::where($cond)->paginate($perPage);
+    }
+
+
+    /**
+     * 全部列表+支持检索
+     *
+     * @param $params
+     * @return mixed
+     */
+    public static function getList($params)
+    {
+        $cond = self::filterParams($params);
+
+        return self::where($cond)->get();
+    }
+
+    /**
+     * 获取详情+支持数组格式
+     *
+     * @param $id
+     * @param bool $isArr
+     * @return mixed
+     */
+    public static function getDetailById($id, $isArr = true)
+    {
+        $info = self::find($id);
+        if ($isArr) {
+            $info = $info->toArray();
+        }
+
+        return $info;
+    }
+
+    /**
+     * 根据主键删除记录
+     *
+     * @param $id
+     * @return mixed
+     */
+    public static function deleteById($id)
+    {
+        return self::destroy($id);
+    }
+
+
+    /**
+     * 批量删除
+     * @param array $ids
+     * @return int
+     */
+    public static function batchDelete(array $ids)
+    {
+        return self::destroy($ids);
+    }
+
+    /**
+     * 新建+编辑
+     *
+     * @param $params
+     * @return array
+     */
+    public static function handleSave($params)
+    {
+        $params = self::filterParams($params);
+
+        $keyName = (new self())->getKeyName();
+
+        // 历史数据
+        if (isset($params[$keyName]) && $obj = self::find($params[$keyName])) {
+            $params = array_merge($obj->toArray(), $params);
+        } else {
+            // 创建新数据
+            $obj = new self();
+        }
+
+        foreach ($params as $k => $v) {
+            if (isset($params[$k])) {
+                $obj->$k = $v;
+            }
+        }
+
+        return $obj->save() ? $obj->toArray() : [];
+    }
+
+    /**
+     * 过滤null字段 以及 非attr字段
+     *
+     * @param $params
+     * @return array
+     */
+    private static function filterParams($params)
+    {
+
+        $ins     = (new self);
+        $keyName = $ins->getKeyName();
+        $attrs   = $ins->getAttributes();
+
+
+        $cond = [];
+
+        if (is_array($params) && $params) {
+            // 主键特殊处理
+            if (isset($params[$keyName]) && $params[$keyName]) {
+                $cond[$keyName] = $params[$keyName];
+            }
+            foreach ($params as $k => $v) {
+                if (isset($attrs[$k])) {
+                    $cond[$k] = $v;
+                }
+            }
+        }
+
+        return $cond;
+    }
+}

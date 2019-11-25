@@ -1,0 +1,10 @@
+<?php
+
+namespace {{render_namespace}};
+
+use Sunshinev\Render\Controller\BaseRenderController;
+
+class RenderController extends BaseRenderController
+{
+
+}

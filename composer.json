@@ -1,0 +1,21 @@
+{
+    "name": "sunshinev/laravel-gii",
+    "authors": [
+        {
+            "name": "sunshinev"
+        }
+    ],
+    "description": "visual code generator tools gii for laravel",
+    "license": "MIT",
+    "require": {},
+    "autoload": {
+        "Sunshinev\\Gii": "\\src"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sunshinev\\Gii\\Providers\\GiiServiceProvider"
+            ]
+        }
+    }
+}
