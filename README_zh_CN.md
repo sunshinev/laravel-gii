@@ -8,7 +8,28 @@ GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/lara
 
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
-[TOC]
+
+
+ * [laravel-gii](#laravel-gii)
+      * [安装之前需了解](#安装之前需了解)
+      * [安装](#安装)
+         * [安装包](#安装包)
+         * [发布文件](#发布文件)
+         * [添加路由](#添加路由)
+         * [然后访问吧](#然后访问吧)
+      * [使用](#使用)
+         * [创建Model模型](#创建model模型)
+            * [表单说明](#表单说明)
+         * [创建CRUD](#创建crud)
+            * [表单说明](#表单说明-1)
+         * [文件差异对比](#文件差异对比)
+         * [最终文件内容](#最终文件内容)
+      * [创建后后台页面](#创建后后台页面)
+         * [列表页](#列表页)
+         * [删除 批量删除](#删除批量删除)
+         * [行预览](#行预览)
+         * [编辑页面](#编辑页面)
+      * [相关问题](#相关问题)
 
 ## 安装之前需了解
 

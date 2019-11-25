@@ -10,7 +10,27 @@ According to the MySQL table structure, the corresponding project files such as 
 
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
-[TOC]
+
+   * [laravel-gii](#laravel-gii)
+      * [Need to know before installing](#need-to-know-before-installing)
+      * [Installation](#installation)
+         * [Installation package](#installation-package)
+         * [Publishing files](#publishing-files)
+         * [Adding a route](#adding-a-route)
+         * [Then visit](#then-visit)
+      * [Use](#use)
+         * [Creating a Model Model](#creating-a-model-model)
+            * [Form Description](#form-description)
+         * [Create CRUD](#create-crud)
+            * [Form Description](#form-description-1)
+         * [File Difference Comparison](#file-difference-comparison)
+         * [Final file content](#final-file-content)
+      * [Create a post page](#create-a-post-page)
+         * [List](#list)
+         * [Delete   Batch Delete](#delete--batch-delete)
+         * [Row preview](#row-preview)
+         * [Edit page](#edit-page)
+      * [related question](#related-question)
 
 ## Need to know before installing
 
