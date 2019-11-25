@@ -1,5 +1,7 @@
 # laravel-gii
 
+GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/laravel-gii)
+
 Suitable for fast B-side background development
 
 According to the MySQL table structure, the corresponding project files such as Model, Observer, Controller, View, and Route are generated, and the complete CRUD background can be automatically created by simply clicking the mouse.

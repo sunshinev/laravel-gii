@@ -1,5 +1,7 @@
 # laravel-gii
 
+GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/laravel-gii)
+
 适用于快速B端后台开发
 
 根据MySQL的表结构生成对应的Model、Observer、Controller、View、Route等相关项目文件，通过简单点击鼠标即可自动创建完整的CRUD后台。
