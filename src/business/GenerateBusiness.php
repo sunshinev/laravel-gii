@@ -22,19 +22,12 @@ class GenerateBusiness
         $defaultPath = str_replace('\\', '/', $namespace) . '/' . $class . '.php';
         // if class file do not exits, then  generate virtual path
         $virtualPath = base_path($defaultPath);
+        $isNewFile   = file_exists($virtualPath) ? false : true;
         // if file exists
-        try {
-            $currentFilePath = (new \ReflectionClass($className))->getFileName();
-        } catch (\Exception $exception) {
-            $currentFilePath = '';
-        } catch (\Throwable $exception) {
-            $currentFilePath = '';
-        }
-
         // generate new content
         $content = str_replace(array_keys($fields), array_values($fields), file_get_contents($stubFilePath));
         // get current class file content
-        $currentContent = $currentFilePath ? file_get_contents($currentFilePath) : '';
+        $currentContent = !$isNewFile ? file_get_contents($virtualPath) : '';
 
         $diffContent = addslashes((new Differ())->diff($currentContent, $content));
 
@@ -45,8 +38,7 @@ class GenerateBusiness
         return [
             'path'         => $defaultPath,
             'virtual_path' => $virtualPath,
-            'current_path' => $currentFilePath,
-            'is_new_file'  => $currentFilePath ? 'n' : 'y',
+            'is_new_file'  => $isNewFile ? 'y' : 'n',
             'content'      => $content,
             'diff_content' => $diffContent,
             'is_diff'      => $diffContent ? 'y' : 'n'
@@ -59,12 +51,13 @@ class GenerateBusiness
         // 根据控制器寻找view
         $defaultPath     = str_replace('\\', '/', str_replace('App\\Http\\Controllers\\', '', $namespace)) . '/' . str_replace('Controller', '', $class) . '/' . $viewPath . '.php';
         $virtualPath     = resource_path('views/' . strtolower($defaultPath));
-        $currentFilePath = file_exists($virtualPath) ? $virtualPath : '';
+
+        $isNewFile   = file_exists($virtualPath) ? false : true;
 
         // generate new content
         $content = str_replace(array_keys($fields), array_values($fields), file_get_contents($stubFilePath));
         // get current class file content
-        $currentContent = $currentFilePath ? file_get_contents($currentFilePath) : '';
+        $currentContent = !$isNewFile ? file_get_contents($virtualPath) : '';
 
         $diffContent = addslashes((new Differ())->diff($currentContent, $content));
 
@@ -75,8 +68,7 @@ class GenerateBusiness
         return [
             'path'         => $defaultPath,
             'virtual_path' => $virtualPath,
-            'current_path' => $currentFilePath,
-            'is_new_file'  => $currentFilePath ? 'n' : 'y',
+            'is_new_file'  => $isNewFile ? 'y' : 'n',
             'content'      => $content,
             'diff_content' => $diffContent,
             'is_diff'      => $diffContent ? 'y' : 'n'
@@ -89,7 +81,8 @@ class GenerateBusiness
         // 根据控制器寻找view
         $defaultPath     = 'routes/' . $routeType . '.php';
         $virtualPath     = base_path($defaultPath);
-        $currentFilePath = file_exists($virtualPath) ? $virtualPath : '';
+
+        $isNewFile   = file_exists($virtualPath) ? false : true;
 
         // generate new content
         $currentContent = file_exists($virtualPath) ? file_get_contents($virtualPath) : '';
@@ -106,8 +99,7 @@ class GenerateBusiness
         return [
             'path'         => $defaultPath,
             'virtual_path' => $virtualPath,
-            'current_path' => $currentFilePath,
-            'is_new_file'  => $currentFilePath ? 'n' : 'y',
+            'is_new_file'  => $isNewFile ? 'y' : 'n',
             'content'      => $content,
             'diff_content' => $diffContent,
             'is_diff'      => $diffContent ? 'y' : 'n'
@@ -142,7 +134,7 @@ class GenerateBusiness
 
             if ($f['is_new_file'] == 'n') {
                 try {
-                    file_put_contents($f['current_path'], $f['content']);
+                    file_put_contents($f['virtual_path'], $f['content']);
                 } catch (\Exception $exception) {
                     $files[$key]['status'] = [
                         'type'    => 'error',
