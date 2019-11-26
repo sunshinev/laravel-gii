@@ -8,7 +8,8 @@
     "license":"MIT",
     "description": "visual code generator tools gii for laravel",
     "require": {
-        "sunshienv/laravel-fe-render":"1.0.*"
+        "sebastian/diff": "^3.0",
+        "sunshinev/laravel-fe-render":"^1.0"
     },
     "autoload": {
         "psr-4":{
