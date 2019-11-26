@@ -5,6 +5,7 @@
             "name": "sunshinev"
         }
     ],
+    "license":"MIT",
     "description": "visual code generator tools gii for laravel",
     "require": {
         "sunshienv/laravel-fe-render":"1.0.*"
