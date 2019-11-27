@@ -15,7 +15,6 @@ GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/lara
       * [安装](#安装)
          * [安装包](#安装包)
          * [发布文件](#发布文件)
-         * [添加路由](#添加路由)
          * [然后访问吧](#然后访问吧)
       * [使用](#使用)
          * [创建Model模型](#创建model模型)
@@ -31,11 +30,6 @@ GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/lara
          * [编辑页面](#编辑页面)
       * [相关问题](#相关问题)
 
-## 安装之前需了解
-
-项目创建生成的模板需要依赖于[《github:laravel-fe-render》](https://github.com/sunshinev/laravel-fe-render) 项目，作为模板解析。
-
-后台页面依赖项目编译后的app.js [《github:base-fe》](https://github.com/sunshinev/base-fe) 
 
 ## 安装
 
@@ -128,3 +122,9 @@ CRUD的创建，需要依赖之前创建的模型。
 ## 相关问题
 
 1. 如果生成完Model之后，默认的会使用env中配置的connection，如果需要调整，请修改Model文件。
+
+## 需了解
+
+项目创建生成的模板需要依赖于[《github:laravel-fe-render》](https://github.com/sunshinev/laravel-fe-render) 项目，作为模板解析。
+
+后台页面依赖项目编译后的app.js [《github:base-fe》](https://github.com/sunshinev/base-fe) 
