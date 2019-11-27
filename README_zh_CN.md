@@ -57,13 +57,6 @@ php artisan vendor:publish
 `Tag: laravel-gii`
 
 
-
-### 添加路由
-```
-Route::any('/gii/model','\Sunshinev\Gii\Controllers\ModelController@index');
-Route::any('/gii/crud','\Sunshinev\Gii\Controllers\CrudController@index');
-```
-
 ### 然后访问吧
 `http:[domain]/gii/model`
 

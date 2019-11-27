@@ -23,6 +23,8 @@ class GiiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
         // 扩展视图
         $this->loadViewsFrom(__DIR__.'/../views/', 'gii_views');
 
