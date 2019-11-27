@@ -333,13 +333,14 @@ class ControllerBusiness extends GenerateBusiness
 
         $paths = ['list', 'create', 'detail', 'edit'];
 
+        $projectPath = $this->project ? '/'.$this->project : '';
 
         $routes = '';
         foreach ($paths as $p) {
             $routes .= "{
                     name: '{$this->controllerClassMini}_{$p}',
                     path: '/{$this->controllerClassMini}/{$p}',
-                    url: '/account-book/manage/layout/render?path=/{$this->controllerClassMini}/{$p}'
+                    url: '{$projectPath}/manage/layout/render?path=/{$this->controllerClassMini}/{$p}'
                 },\n";
         }
 
