@@ -28,6 +28,6 @@ class GiiServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../assets' => public_path('/gii_assets'),
-        ], 'gii_assets');
+        ], 'laravel-gii');
     }
 }

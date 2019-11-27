@@ -43,10 +43,6 @@ The background page depends on the compiled app.js ["github:base-fe"] (https://g
 ### Installation package
 
 ```
-composer require sunshinev/laravel-fe-render -vvv
-```
-
-```
 Composer require sunshinev/laravel-gii -vvv
 ```
 
@@ -58,7 +54,7 @@ Composer require sunshinev/laravel-gii -vvv
 Php artisan vendor:publish
 ```
 select
-`[x] Provider: Sunshinev\Gii\Providers\GiiServiceProvider`
+`Tag: laravel-gii`
 
 
 

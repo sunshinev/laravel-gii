@@ -40,9 +40,6 @@ GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/lara
 ## 安装
 
 ### 安装包
-```
-composer require sunshinev/laravel-fe-render -vvv
-```
 
 ```
 Composer require sunshinev/laravel-gii -vvv
@@ -57,7 +54,7 @@ Composer require sunshinev/laravel-gii -vvv
 php artisan vendor:publish
 ```
 选择
-`[x] Provider: Sunshinev\Gii\Providers\GiiServiceProvider`
+`Tag: laravel-gii`
 
 
 
