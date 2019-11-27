@@ -1,4 +1,4 @@
-# laravel-gii
+# Laravel-Gii 可视化代码生成工具  CRUD +GUI 
 
 GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/laravel-gii)
 

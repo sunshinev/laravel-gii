@@ -1,4 +1,4 @@
-# laravel-gii
+# Laravel-Gii visual code generation tool CRUD + GUI
 
 [中文文档支持README_zh_CN](https://github.com/sunshinev/laravel-gii/blob/master/README_zh_CN.md)
 
