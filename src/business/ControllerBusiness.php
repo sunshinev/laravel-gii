@@ -386,9 +386,11 @@ class ControllerBusiness extends GenerateBusiness
         $path   = str_replace('App\\Http\\Controllers\\', '', $this->controllerNamespace);
         $module = strpos($path, '\\') === false ? $path : substr($path, 0, strpos($path, '\\'));
 
+        $moduleLower = strtolower($module);
+
         $routes   = [];
-        $routes[] = "Route::get('/{$module}/layout', '{$module}\RenderController@index');";
-        $routes[] = "Route::get('/{$module}/layout/render', '{$module}\RenderController@render');";
+        $routes[] = "Route::get('/{$moduleLower}/layout', '{$module}\RenderController@index');";
+        $routes[] = "Route::get('/{$moduleLower}/layout/render', '{$module}\RenderController@render');";
 
         $routesStr = join("\n", $routes) . "\n";
 

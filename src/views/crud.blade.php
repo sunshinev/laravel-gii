@@ -27,7 +27,7 @@
                 <i-form-item>
                     <i-button type="primary" html-type="submit" name="preview">生成预览</i-button>
                     @if(isset($files))
-                        <i-button type="success" html-type="submit" name="generate">创建文件</i-button>
+                        <i-button type="success" html-type="submit" name="generate" :value="1">创建文件</i-button>
                         <input type="hidden"  name="waitingfiles" v-model="waitingfiles">
                     @endif
                 </i-form-item>
@@ -160,7 +160,7 @@
                     this.$refs.selection.selectAll(status);
                 },
                 table_selection_change(rows) {
-                    console.info(rows)
+                    this.waitingfiles = []
                     for (var i in rows) {
                         this.waitingfiles.push(rows[i].path);
                     }
