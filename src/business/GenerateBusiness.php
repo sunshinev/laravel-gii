@@ -80,6 +80,48 @@ class GenerateBusiness
     }
 
 
+    public static function handleLayoutdefaultFile($namespace, $class, $fields, $stubFilePath, $viewPath = '')
+    {
+        // 根据控制器寻找view
+        $defaultPathParent = str_replace('\\', '/', trim(str_replace('App\\Http\\Controllers', '', $namespace), '\\'));
+        $defaultPathParent = $defaultPathParent ? $defaultPathParent . '/' : '';
+        $defaultPath       = $defaultPathParent . str_replace('Controller', '', $class) . '/' . $viewPath . '.php';
+        $virtualPath       = resource_path('views/' . strtolower($defaultPath));
+
+        $isNewFile = file_exists($virtualPath) ? false : true;
+
+        // get current class file content
+        $currentContent = !$isNewFile ? file_get_contents($virtualPath) : '';
+
+        // generate new content
+        if ($isNewFile) {
+            $content = str_replace(array_keys($fields), array_values($fields), file_get_contents($stubFilePath));
+        } else {
+            $fields  = [
+                '//-----routes append-----' => $fields['{{routes}}'],
+                '//-----menus append-----'  => $fields['{{menus}}']
+            ];
+            $content = str_replace(array_keys($fields), array_values($fields), $currentContent);
+        }
+
+        $diffContent = (new Differ())->diff($currentContent, $content);
+
+        if (trim($diffContent) == "--- Original\n+++ New") {
+            $diffContent = '';
+        }
+
+        return [
+            'path'           => $defaultPath,
+            'virtual_path'   => $virtualPath,
+            'is_new_file'    => $isNewFile ? 'y' : 'n',
+            'content'        => rawurlencode($content),
+            'origin_content' => $content,
+            'diff_content'   => rawurlencode($diffContent),
+            'is_diff'        => $diffContent ? 'y' : 'n'
+        ];
+    }
+
+
     public static function handleRouteFile($appendContent, $routeType)
     {
         // 根据控制器寻找view

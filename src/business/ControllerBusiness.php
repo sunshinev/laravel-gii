@@ -345,11 +345,15 @@ class ControllerBusiness extends GenerateBusiness
                 },\n";
         }
 
+        $routes .= '//-----routes append-----';
+
         $menus = "{
                         icon: 'ios-people',
                         title: '{$this->controllerClassMini} list',
                         name:'{$this->controllerClassMini}_list'
-                    }";
+                    },\n";
+
+        $menus .= '//-----menus append-----';
 
         $fields = [
             '{{routes}}'        => $routes,
@@ -358,7 +362,7 @@ class ControllerBusiness extends GenerateBusiness
         ];
 
 
-        $ret = self::handleViewFile($this->controllerNamespace, 'layouts', $fields, $stubFile, 'default.blade');
+        $ret = self::handleLayoutdefaultFile($this->controllerNamespace, 'layouts', $fields, $stubFile, 'default.blade');
 
         return $ret;
     }
