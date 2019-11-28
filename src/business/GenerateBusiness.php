@@ -49,10 +49,12 @@ class GenerateBusiness
     public static function handleViewFile($namespace, $class, $fields, $stubFilePath, $viewPath = '')
     {
         // 根据控制器寻找view
-        $defaultPath     = str_replace('\\', '/', str_replace('App\\Http\\Controllers\\', '', $namespace)) . '/' . str_replace('Controller', '', $class) . '/' . $viewPath . '.php';
-        $virtualPath     = resource_path('views/' . strtolower($defaultPath));
+        $defaultPathParent = str_replace('\\', '/', trim(str_replace('App\\Http\\Controllers', '', $namespace), '\\'));
+        $defaultPathParent = $defaultPathParent ? $defaultPathParent . '/' : '';
+        $defaultPath       = $defaultPathParent . str_replace('Controller', '', $class) . '/' . $viewPath . '.php';
+        $virtualPath = resource_path('views/' . strtolower($defaultPath));
 
-        $isNewFile   = file_exists($virtualPath) ? false : true;
+        $isNewFile = file_exists($virtualPath) ? false : true;
 
         // generate new content
         $content = str_replace(array_keys($fields), array_values($fields), file_get_contents($stubFilePath));
@@ -79,10 +81,10 @@ class GenerateBusiness
     public static function handleRouteFile($appendContent, $routeType)
     {
         // 根据控制器寻找view
-        $defaultPath     = 'routes/' . $routeType . '.php';
-        $virtualPath     = base_path($defaultPath);
+        $defaultPath = 'routes/' . $routeType . '.php';
+        $virtualPath = base_path($defaultPath);
 
-        $isNewFile   = file_exists($virtualPath) ? false : true;
+        $isNewFile = file_exists($virtualPath) ? false : true;
 
         // generate new content
         $currentContent = file_exists($virtualPath) ? file_get_contents($virtualPath) : '';

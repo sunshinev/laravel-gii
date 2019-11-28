@@ -60,7 +60,7 @@ class ModelBusiness extends GenerateBusiness
 
         // 模型组件扩展
         $modelClass     = $baseModelClass . 'Model';
-        $modelNamespace = trim(substr($baseModelNamespace, 0, strrpos($baseModelNamespace, '\\')), '\\');
+        $modelNamespace = $baseModelNamespace;//trim(substr($baseModelNamespace, 0, strrpos($baseModelNamespace, '\\')), '\\');
         $modelClassName = $modelNamespace . '\\' . $modelClass;
 
         // 表结构

@@ -83,6 +83,10 @@ class ControllerBusiness extends GenerateBusiness
 
     protected $m2cPath;
 
+    protected $m2Path;
+
+    protected $m2;
+
 
     /**
      * ControllerBusiness constructor.
@@ -116,6 +120,9 @@ class ControllerBusiness extends GenerateBusiness
         $this->project = substr($urlPath, strpos($urlPath, '/'));
 
         $this->m2cPath = $this->getM2cPath();
+
+        $this->m2     = $this->getM2();
+        $this->m2Path = $this->getM2Path();
     }
 
     /**
@@ -152,8 +159,7 @@ class ControllerBusiness extends GenerateBusiness
 
         // 转换model类
         $modelClass     = $this->modelClass . 'Model';
-        $modelNamespace = trim(substr($this->modelNamespace, 0, strrpos($this->modelNamespace, '\\')), '\\');
-        $modelClassName = $modelNamespace . '\\' . $modelClass;
+        $modelClassName = $this->modelNamespace . '\\' . $modelClass;
 
         $fields = [
             '{{model_class_name}}'     => $modelClassName,
@@ -173,9 +179,8 @@ class ControllerBusiness extends GenerateBusiness
     {
         $stubFile = __DIR__ . '/../stubs/render.stub';
 
-        $path            = str_replace('App\\Http\\Controllers\\', '', $this->controllerNamespace);
-        $modules         = strpos($path, '\\') === false ? $path : substr($path, 0, strpos($path, '\\'));
-        $renderNamespace = 'App\\Http\\Controllers\\' . trim($modules, '\\');
+        $m2              = $this->m2 ? '\\' . $this->m2 : '';
+        $renderNamespace = 'App\\Http\\Controllers' . $m2;
 
         $fields = [
             '{{render_namespace}}' => $renderNamespace,
@@ -333,14 +338,16 @@ class ControllerBusiness extends GenerateBusiness
 
         $paths = ['list', 'create', 'detail', 'edit'];
 
-        $projectPath = $this->project ? '/'.$this->project : '';
+        $projectPath = $this->project ? '/' . $this->project : '';
+
+        $m2Path = $this->m2Path ? '/' . $this->m2Path : '';
 
         $routes = '';
         foreach ($paths as $p) {
             $routes .= "{
                     name: '{$this->controllerClassMini}_{$p}',
                     path: '/{$this->controllerClassMini}/{$p}',
-                    url: '{$projectPath}/manage/layout/render?path=/{$this->controllerClassMini}/{$p}'
+                    url: '{$projectPath}{$m2Path}/layout/render?path=/{$this->controllerClassMini}/{$p}'
                 },\n";
         }
 
@@ -371,9 +378,11 @@ class ControllerBusiness extends GenerateBusiness
         // api 路由
         $apiRoutes = [];
 
+        $m2cPath = $this->m2cPath ? '/' . $this->m2cPath : '';
+
         $controller = str_replace('App\\Http\\Controllers\\', '', $this->controllerClassName);
         foreach ($this->actions as $name => $action) {
-            $apiRoutes[] = "Route::any('/{$this->m2cPath}/{$name}', '{$controller}@{$action}');";
+            $apiRoutes[] = "Route::any('{$m2cPath}/{$name}', '{$controller}@{$action}');";
         }
 
         $apiRoutesStr = join("\n", $apiRoutes) . "\n";
@@ -383,14 +392,13 @@ class ControllerBusiness extends GenerateBusiness
 
     private function handleWebRoute()
     {
-        $path   = str_replace('App\\Http\\Controllers\\', '', $this->controllerNamespace);
-        $module = strpos($path, '\\') === false ? $path : substr($path, 0, strpos($path, '\\'));
 
-        $moduleLower = strtolower($module);
+        $m2Path = $this->m2Path ? '/' . $this->m2Path : '';
+        $m2     = $this->m2 ? $this->m2 . '\\' : '';
 
         $routes   = [];
-        $routes[] = "Route::get('/{$moduleLower}/layout', '{$module}\RenderController@index');";
-        $routes[] = "Route::get('/{$moduleLower}/layout/render', '{$module}\RenderController@render');";
+        $routes[] = "Route::get('{$m2Path}/layout', '{$m2}RenderController@index');";
+        $routes[] = "Route::get('{$m2Path}/layout/render', '{$m2}RenderController@render');";
 
         $routesStr = join("\n", $routes) . "\n";
 
@@ -403,11 +411,25 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function getApiUrl($api)
     {
-        return "{$this->project}/api/{$this->m2cPath}/" . $api;
+        $m2cPath = $this->m2cPath ? $this->m2cPath.'/' : '';
+        return "{$this->project}/api/{$m2cPath}" . $api;
     }
 
     private function getM2cPath()
     {
-        return strtolower(str_replace('\\', '/', str_replace('App\\Http\\Controllers\\', '', $this->controllerNamespace))) . '/' . $this->controllerClassMini;
+        $m2Path = $this->getM2Path();
+        $m2Path = $m2Path ? $m2Path.'/' : '';
+
+        return $m2Path . $this->controllerClassMini;
+    }
+
+    private function getM2Path()
+    {
+        return strtolower(str_replace('\\', '/', $this->getM2()));
+    }
+
+    private function getM2()
+    {
+        return trim(str_replace('App\\Http\\Controllers\\', '', $this->controllerNamespace . '\\'), '\\');
     }
 }
