@@ -29,19 +29,20 @@ class GenerateBusiness
         // get current class file content
         $currentContent = !$isNewFile ? file_get_contents($virtualPath) : '';
 
-        $diffContent = addslashes((new Differ())->diff($currentContent, $content));
+        $diffContent = (new Differ())->diff($currentContent, $content);
 
         if (trim($diffContent) == "--- Original\n+++ New") {
             $diffContent = '';
         }
 
         return [
-            'path'         => $defaultPath,
-            'virtual_path' => $virtualPath,
-            'is_new_file'  => $isNewFile ? 'y' : 'n',
-            'content'      => $content,
-            'diff_content' => $diffContent,
-            'is_diff'      => $diffContent ? 'y' : 'n'
+            'path'           => $defaultPath,
+            'virtual_path'   => $virtualPath,
+            'is_new_file'    => $isNewFile ? 'y' : 'n',
+            'content'        => rawurlencode($content),
+            'origin_content' => $content,
+            'diff_content'   => rawurlencode($diffContent),
+            'is_diff'        => $diffContent ? 'y' : 'n'
         ];
     }
 
@@ -52,7 +53,7 @@ class GenerateBusiness
         $defaultPathParent = str_replace('\\', '/', trim(str_replace('App\\Http\\Controllers', '', $namespace), '\\'));
         $defaultPathParent = $defaultPathParent ? $defaultPathParent . '/' : '';
         $defaultPath       = $defaultPathParent . str_replace('Controller', '', $class) . '/' . $viewPath . '.php';
-        $virtualPath = resource_path('views/' . strtolower($defaultPath));
+        $virtualPath       = resource_path('views/' . strtolower($defaultPath));
 
         $isNewFile = file_exists($virtualPath) ? false : true;
 
@@ -61,19 +62,20 @@ class GenerateBusiness
         // get current class file content
         $currentContent = !$isNewFile ? file_get_contents($virtualPath) : '';
 
-        $diffContent = addslashes((new Differ())->diff($currentContent, $content));
+        $diffContent = (new Differ())->diff($currentContent, $content);
 
         if (trim($diffContent) == "--- Original\n+++ New") {
             $diffContent = '';
         }
 
         return [
-            'path'         => $defaultPath,
-            'virtual_path' => $virtualPath,
-            'is_new_file'  => $isNewFile ? 'y' : 'n',
-            'content'      => $content,
-            'diff_content' => $diffContent,
-            'is_diff'      => $diffContent ? 'y' : 'n'
+            'path'           => $defaultPath,
+            'virtual_path'   => $virtualPath,
+            'is_new_file'    => $isNewFile ? 'y' : 'n',
+            'content'        => rawurlencode($content),
+            'origin_content' => $content,
+            'diff_content'   => rawurlencode($diffContent),
+            'is_diff'        => $diffContent ? 'y' : 'n'
         ];
     }
 
@@ -92,19 +94,20 @@ class GenerateBusiness
         $begin   = "\n\n\n\n//--------- append route " . date('Y-m-d H:i:s') . "----------\n\n";
         $content = $currentContent . $begin . $appendContent;
 
-        $diffContent = addslashes((new Differ())->diff($currentContent, $content));
+        $diffContent = (new Differ())->diff($currentContent, $content);
 
         if (trim($diffContent) == "--- Original\n+++ New") {
             $diffContent = '';
         }
 
         return [
-            'path'         => $defaultPath,
-            'virtual_path' => $virtualPath,
-            'is_new_file'  => $isNewFile ? 'y' : 'n',
-            'content'      => $content,
-            'diff_content' => $diffContent,
-            'is_diff'      => $diffContent ? 'y' : 'n'
+            'path'           => $defaultPath,
+            'virtual_path'   => $virtualPath,
+            'is_new_file'    => $isNewFile ? 'y' : 'n',
+            'content'        => rawurlencode($content),
+            'origin_content' => $content,
+            'diff_content'   => rawurlencode($diffContent),
+            'is_diff'        => $diffContent ? 'y' : 'n'
         ];
     }
 
@@ -136,7 +139,7 @@ class GenerateBusiness
 
             if ($f['is_new_file'] == 'n') {
                 try {
-                    file_put_contents($f['virtual_path'], $f['content']);
+                    file_put_contents($f['virtual_path'], $f['origin_content']);
                 } catch (\Exception $exception) {
                     $files[$key]['status'] = [
                         'type'    => 'error',
@@ -150,7 +153,7 @@ class GenerateBusiness
                         mkdir($p, 0755, true);
                     }
 
-                    file_put_contents($f['virtual_path'], $f['content']);
+                    file_put_contents($f['virtual_path'], $f['origin_content']);
                 } catch (\Exception $exception) {
                     $files[$key]['status'] = [
                         'type'    => 'error',

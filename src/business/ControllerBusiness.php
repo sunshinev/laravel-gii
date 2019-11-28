@@ -225,7 +225,7 @@ class ControllerBusiness extends GenerateBusiness
 
         $ret = self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'list.blade');
         // 转义script标签
-        $ret['diff_content'] = str_replace(['<script>', '</script>'], [htmlentities('<script>'), htmlentities('</script>')], $ret['diff_content']);
+//        $ret['diff_content'] = str_replace(['<script>', '</script>'], [htmlentities('<script>'), htmlentities('</script>')], $ret['diff_content']);
 
         return $ret;
     }
@@ -257,8 +257,6 @@ class ControllerBusiness extends GenerateBusiness
 
 
         $ret = self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'edit.blade');
-        // 转义script标签
-        $ret['diff_content'] = str_replace(['<script>', '</script>'], [htmlentities('<script>'), htmlentities('</script>')], $ret['diff_content']);
 
         return $ret;
     }
@@ -289,8 +287,6 @@ class ControllerBusiness extends GenerateBusiness
 
 
         $ret = self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'detail.blade');
-        // 转义script标签
-        $ret['diff_content'] = str_replace(['<script>', '</script>'], [htmlentities('<script>'), htmlentities('</script>')], $ret['diff_content']);
 
         return $ret;
     }
@@ -321,8 +317,6 @@ class ControllerBusiness extends GenerateBusiness
 
 
         $ret = self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'create.blade');
-        // 转义script标签
-        $ret['diff_content'] = str_replace(['<script>', '</script>'], [htmlentities('<script>'), htmlentities('</script>')], $ret['diff_content']);
 
         return $ret;
     }
@@ -365,9 +359,6 @@ class ControllerBusiness extends GenerateBusiness
 
 
         $ret = self::handleViewFile($this->controllerNamespace, 'layouts', $fields, $stubFile, 'default.blade');
-
-        // 转义script标签
-        $ret['diff_content'] = str_replace(['<script>', '</script>'], [htmlentities('<script>'), htmlentities('</script>')], $ret['diff_content']);
 
         return $ret;
     }
