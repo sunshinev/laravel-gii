@@ -345,7 +345,7 @@ class ControllerBusiness extends GenerateBusiness
                 },\n";
         }
 
-        $routes .= '//-----routes append-----';
+        $routes .= '//-----routes append-----'."\n";
 
         $menus = "{
                         icon: 'ios-people',
@@ -353,7 +353,7 @@ class ControllerBusiness extends GenerateBusiness
                         name:'{$this->controllerClassMini}_list'
                     },\n";
 
-        $menus .= '//-----menus append-----';
+        $menus .= '//-----menus append-----'."\n";
 
         $fields = [
             '{{routes}}'        => $routes,
