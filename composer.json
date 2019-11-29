@@ -5,6 +5,7 @@
             "name": "sunshinev"
         }
     ],
+    "keywords": ["laravel", "gii", "code generator", "GUI","CRUD"],
     "license":"MIT",
     "description": "visual code generator tools gii for laravel",
     "require": {
