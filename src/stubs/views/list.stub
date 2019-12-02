@@ -2,18 +2,18 @@
     <div class="layout">
         <i-content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
             <i-row :style="{margin: '20px 0 '}" type="flex" justify="left">
-                <i-col :style="{marginRight:'20px',padding:'20px 0'}" v-for="value in search_fields">
+                <i-col :style="{padding:'10px 0',textAlign:'right'}" span='6' v-for="value in search_fields">
                     {{value}}：
                     <i-input v-model="search_fields[value]" placeholder="" style="width: 200px"></i-input>
                 </i-col>
             </i-row>
             <i-row>
-                <i-col span="12">
-                    <i-button type="info" @click="invokeSearch">点击检索</i-button>
-                    <i-button type="default" @click="invokeCreate">新建</i-button>
+                <i-col span="12" >
+                    <i-button type="default" @click="invokeBatchDelete">批量删除</i-button>
                 </i-col>
                 <i-col span="12" :style="{textAlign:'right'}">
-                    <i-button type="default" @click="invokeBatchDelete">批量删除</i-button>
+                    <i-button type="info" @click="invokeSearch">点击检索</i-button>
+                    <i-button type="default" @click="invokeCreate">新建</i-button>
                 </i-col>
             </i-row>
             <br>
