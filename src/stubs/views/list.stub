@@ -1,5 +1,9 @@
 <template>
     <div class="layout">
+        <i-breadcrumb :style="{margin: '24px 24px'}">
+            <i-breadcrumb-item>{{controller_class_mini}}</i-breadcrumb-item>
+            <i-breadcrumb-item>list</i-breadcrumb-item>
+        </i-breadcrumb>
         <i-content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
             <i-row :style="{margin: '20px 0 '}" type="flex" justify="left">
                 <i-col :style="{padding:'10px 0',textAlign:'right'}" span='6' v-for="value in search_fields">
