@@ -36,7 +36,7 @@ GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/lara
 ### 安装包
 
 ```
-Composer require sunshinev/laravel-gii -vvv
+composer require sunshinev/laravel-gii -vvv
 ```
 
 

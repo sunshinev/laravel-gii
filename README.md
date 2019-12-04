@@ -37,7 +37,7 @@ According to the MySQL table structure, the corresponding project files such as 
 ### Installation package
 
 ```
-Composer require sunshinev/laravel-gii -vvv
+composer require sunshinev/laravel-gii -vvv
 ```
 
 
@@ -45,7 +45,7 @@ Composer require sunshinev/laravel-gii -vvv
 > This operation will release the assets static file to the public directory
 
 ```
-Php artisan vendor:publish
+php artisan vendor:publish
 ```
 select
 `Tag: laravel-gii`
