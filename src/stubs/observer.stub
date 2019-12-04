@@ -7,8 +7,42 @@ use {{base_model_class_name}};
 class {{observer_class}}
 {
     /**
-     * Handle the userinfo "created" event.
-     *
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function retrieved({{base_model_class}} $model)
+    {
+
+    }
+
+    /**
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function saving({{base_model_class}} $model)
+    {
+
+    }
+
+    /**
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function saved({{base_model_class}} $model)
+    {
+
+    }
+
+    /**
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function creating({{base_model_class}} $model)
+    {
+
+    }
+
+    /**
      * @param  \{{base_model_class_name}}  $model
      * @return void
      */
@@ -18,46 +52,66 @@ class {{observer_class}}
     }
 
     /**
-     * Handle the model "updated" event.
-     *
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function updating({{base_model_class}} $model)
+    {
+
+    }
+
+    /**
      * @param  \{{base_model_class_name}}  $model
      * @return void
      */
     public function updated({{base_model_class}} $model)
     {
-        //
+
+    }
+
+
+    /**
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function deleting({{base_model_class}} $model)
+    {
+
     }
 
     /**
-     * Handle the model "deleted" event.
-     *
      * @param  \{{base_model_class_name}}  $model
      * @return void
      */
     public function deleted({{base_model_class}} $model)
     {
-        //
+
     }
 
     /**
-     * Handle the model "restored" event.
-     *
-     * @param  \{{base_model_class_name}}  $model
-     * @return void
-     */
-    public function restored({{base_model_class}} $model)
-    {
-        //
-    }
-
-    /**
-     * Handle the model "force deleted" event.
-     *
      * @param  \{{base_model_class_name}}  $model
      * @return void
      */
     public function forceDeleted({{base_model_class}} $model)
     {
-        //
+
+    }
+
+    /**
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function restoring({{base_model_class}} $model)
+    {
+
+    }
+
+    /**
+     * @param  \{{base_model_class_name}}  $model
+     * @return void
+     */
+    public function restored({{base_model_class}} $model)
+    {
+
     }
 }
