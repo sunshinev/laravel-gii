@@ -4,7 +4,7 @@ GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/lara
 
 适用于快速B端后台开发
 
-根据MySQL的表结构生成对应的Model、Observer、Controller、View、Route等相关项目文件，通过简单点击鼠标即可自动创建完整的CRUD后台。
+根据 MySQL 的表结构生成对应的 Model、Observer、Controller、View、Route 等相关项目文件，通过简单点击鼠标即可自动创建完整的 CRUD 后台。
 
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
@@ -17,9 +17,9 @@ GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/lara
          * [发布文件](#发布文件)
          * [然后访问吧](#然后访问吧)
       * [使用](#使用)
-         * [创建Model模型](#创建model模型)
+         * [创建 Model 模型](#创建model模型)
             * [表单说明](#表单说明)
-         * [创建CRUD](#创建crud)
+         * [创建 CRUD ](#创建crud)
             * [表单说明](#表单说明-1)
          * [文件差异对比](#文件差异对比)
          * [最终文件内容](#最终文件内容)
@@ -62,8 +62,8 @@ php artisan vendor:publish
 
 #### 表单说明
 1. 表名称（支持下拉选择）
-2. Model类名（想要创建模型类，包含命名空间）
-3. 模型继承的父类（如果是Mongo可以继承`Jenssegers\Mongodb\Eloquent\Model`，MySQL用`Illuminate\Database\Eloquent\Model`）
+2. Model 类名（想要创建模型类，包含命名空间）
+3. 模型继承的父类（如果是Mongo可以继承`Jenssegers\Mongodb\Eloquent\Model`，MySQL 用`Illuminate\Database\Eloquent\Model`）
 
 
 生成的文件列表，蓝色代表全新文件，红色代表已有文件但是存在不同，白色代表已有文件。
@@ -72,7 +72,7 @@ php artisan vendor:publish
 
 ### 创建CRUD
 
-CRUD的创建，需要依赖之前创建的模型。
+CRUD 的创建，需要依赖之前创建的模型。
 
 该操作会同时生成：
 
@@ -121,10 +121,10 @@ CRUD的创建，需要依赖之前创建的模型。
 
 ## 相关问题
 
-1. 如果生成完Model之后，默认的会使用env中配置的connection，如果需要调整，请修改Model文件。
+1. 如果生成完Model之后，默认的会使用 env 中配置的 connection，如果需要调整，请修改 Model 文件。
 
 ## 需了解
 
 项目创建生成的模板需要依赖于[《github:laravel-fe-render》](https://github.com/sunshinev/laravel-fe-render) 项目，作为模板解析。
 
-后台页面依赖项目编译后的app.js [《github:base-fe》](https://github.com/sunshinev/base-fe) 
+后台页面依赖项目编译后的 app.js [《github:base-fe》](https://github.com/sunshinev/base-fe) 
