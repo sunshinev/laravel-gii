@@ -223,11 +223,7 @@ class ControllerBusiness extends GenerateBusiness
         ];
 
 
-        $ret = self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'list.blade');
-        // 转义script标签
-//        $ret['diff_content'] = str_replace(['<script>', '</script>'], [htmlentities('<script>'), htmlentities('</script>')], $ret['diff_content']);
-
-        return $ret;
+        return self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'list.blade');
     }
 
     /**
@@ -249,16 +245,15 @@ class ControllerBusiness extends GenerateBusiness
         }
 
         $fields = [
-            '{{model_key_name}}' => $this->modelKeyName,
-            '{{fields_info}}'    => $fields,
-            '{{detail_api}}'     => $this->getApiUrl('detail'),
-            '{{save_api}}'       => $this->getApiUrl('save'),
+            '{{controller_class_mini}}' => $this->controllerClassMini,
+            '{{model_key_name}}'        => $this->modelKeyName,
+            '{{fields_info}}'           => $fields,
+            '{{detail_api}}'            => $this->getApiUrl('detail'),
+            '{{save_api}}'              => $this->getApiUrl('save'),
         ];
 
 
-        $ret = self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'edit.blade');
-
-        return $ret;
+        return self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'edit.blade');
     }
 
     /**
@@ -280,15 +275,14 @@ class ControllerBusiness extends GenerateBusiness
         }
 
         $fields = [
-            '{{model_key_name}}' => $this->modelKeyName,
-            '{{fields_info}}'    => $fields,
-            '{{detail_api}}'     => $this->getApiUrl('detail'),
+            '{{controller_class_mini}}' => $this->controllerClassMini,
+            '{{model_key_name}}'        => $this->modelKeyName,
+            '{{fields_info}}'           => $fields,
+            '{{detail_api}}'            => $this->getApiUrl('detail'),
         ];
 
 
-        $ret = self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'detail.blade');
-
-        return $ret;
+        return self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'detail.blade');
     }
 
     /**
@@ -310,15 +304,14 @@ class ControllerBusiness extends GenerateBusiness
         }
 
         $fields = [
-            '{{model_key_name}}' => $this->modelKeyName,
-            '{{fields_info}}'    => $fields,
-            '{{save_api}}'       => $this->getApiUrl('save'),
+            '{{controller_class_mini}}' => $this->controllerClassMini,
+            '{{model_key_name}}'        => $this->modelKeyName,
+            '{{fields_info}}'           => $fields,
+            '{{save_api}}'              => $this->getApiUrl('save'),
         ];
 
 
-        $ret = self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'create.blade');
-
-        return $ret;
+        return self::handleViewFile($this->controllerNamespace, $this->controllerClass, $fields, $stubFile, 'create.blade');
     }
 
 
@@ -345,7 +338,7 @@ class ControllerBusiness extends GenerateBusiness
                 },\n";
         }
 
-        $routes .= '//-----routes append-----'."\n";
+        $routes .= '//-----routes append-----' . "\n";
 
         $menus = "{
                         icon: 'ios-people',
@@ -353,7 +346,7 @@ class ControllerBusiness extends GenerateBusiness
                         name:'{$this->controllerClassMini}_list'
                     },\n";
 
-        $menus .= '//-----menus append-----'."\n";
+        $menus .= '//-----menus append-----' . "\n";
 
         $fields = [
             '{{routes}}'        => $routes,
@@ -362,9 +355,8 @@ class ControllerBusiness extends GenerateBusiness
         ];
 
 
-        $ret = self::handleLayoutdefaultFile($this->controllerNamespace, 'layouts', $fields, $stubFile, 'default.blade');
+        return self::handleLayoutdefaultFile($this->controllerNamespace, 'layouts', $fields, $stubFile, 'default.blade');
 
-        return $ret;
     }
 
 
@@ -406,14 +398,14 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function getApiUrl($api)
     {
-        $m2cPath = $this->m2cPath ? $this->m2cPath.'/' : '';
+        $m2cPath = $this->m2cPath ? $this->m2cPath . '/' : '';
         return "{$this->project}/api/{$m2cPath}" . $api;
     }
 
     private function getM2cPath()
     {
         $m2Path = $this->getM2Path();
-        $m2Path = $m2Path ? $m2Path.'/' : '';
+        $m2Path = $m2Path ? $m2Path . '/' : '';
 
         return $m2Path . $this->controllerClassMini;
     }
