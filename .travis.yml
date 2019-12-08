@@ -1,0 +1,18 @@
+language: php
+
+php:
+  - 7.2
+
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE test;'
+
+before_script:
+  - composer self-update
+  - travis_retry composer update --no-interaction
+  - composer dump-autoload
+
+script:
+  - vendor/bin/phpunit -v
