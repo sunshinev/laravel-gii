@@ -1,13 +1,16 @@
 # Laravel-Gii 可视化代码生成工具  CRUD +GUI 
+![Travis (.com)](https://img.shields.io/travis/com/sunshinev/laravel-gii)
+![GitHub last commit](https://img.shields.io/github/last-commit/sunshinev/laravel-gii)
+![GitHub](https://img.shields.io/github/license/sunshinev/laravel-gii)
+![GitHub repo size](https://img.shields.io/github/repo-size/sunshinev/laravel-gii)
+![GitHub stars](https://img.shields.io/github/stars/sunshinev/laravel-gii?style=social)
+![GitHub forks](https://img.shields.io/github/forks/sunshinev/laravel-gii?style=social)
+![](https://img.shields.io/badge/laravel-package-brightgreen)
 
-GIT:[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/laravel-gii)
-
-适用于快速B端后台开发
-
-根据MySQL的表结构生成对应的Model、Observer、Controller、View、Route等相关项目文件，通过简单点击鼠标即可自动创建完整的CRUD后台。
-
+适用于快速B端后台开发，根据MySQL的表结构生成对应的Model、Observer、Controller、View、Route等相关项目文件
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
+
 
 
  * [laravel-gii](#laravel-gii)
@@ -128,3 +131,5 @@ CRUD的创建，需要依赖之前创建的模型。
 项目创建生成的模板需要依赖于[《github:laravel-fe-render》](https://github.com/sunshinev/laravel-fe-render) 项目，作为模板解析。
 
 后台页面依赖项目编译后的app.js [《github:base-fe》](https://github.com/sunshinev/base-fe) 
+
+[https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/laravel-gii)
