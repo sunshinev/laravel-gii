@@ -12,9 +12,18 @@
         "sebastian/diff": "^3.0",
         "sunshinev/laravel-fe-render":"^1.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "orchestra/testbench": "^3.8|^4.0"
+    },
     "autoload": {
         "psr-4":{
-            "Sunshinev\\Gii\\": "\\src"
+            "Sunshinev\\Gii\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sunshinev\\Gii\\Test\\": "tests"
         }
     },
     "extra": {

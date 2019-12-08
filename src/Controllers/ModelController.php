@@ -2,25 +2,28 @@
 
 namespace Sunshinev\Gii\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-use Sunshinev\Gii\Business\ControllerBusiness;
 use Sunshinev\Gii\Business\ModelBusiness;
 
-class CrudController extends Controller
+class ModelController extends Controller
 {
+
     public function index(Request $request)
     {
-        $response = ['files' => []];
+        $response = ['files'=>[]];
 
         try {
+            $response['table_list'] = ModelBusiness::getTableList();
+
             // preview
             if ($request->method() == 'POST') {
 
-                $controllerClassName = trim($request->post('controller_class_name'));
-                $modelClassName      = trim($request->post('model_class_name'));
+                $tableName       = trim($request->post('table_name'));
+                $modelClassName  = trim($request->post('model_class_name'));
+                $parentClassName = trim($request->post('parent_class_name'));
 
-                $fileList = (new ControllerBusiness($controllerClassName, $modelClassName))->preview();
+                $fileList = ModelBusiness::preview($tableName, $modelClassName, $parentClassName);
 
                 $response['files'] = $fileList;
 
@@ -36,18 +39,17 @@ class CrudController extends Controller
                         ];
                     }
                     // generate
-                    $response['generate_info'] = ControllerBusiness::generateFile($fileList, $waitingFiles);
+                    $response['generate_info'] = ModelBusiness::generateFile($fileList, $waitingFiles);
                 }
             }
-        } catch (\Exception $exception) {
-            throw  $exception;
+        }catch (\Exception $exception) {
             $response['alert'] = [
                 'type'    => 'error',
                 'message' => $exception->getMessage()
             ];
         }
 
-        $viewPath = 'gii_views::crud';
+        $viewPath = 'gii_views::model';
         return response()->view($viewPath, $response);
     }
 }

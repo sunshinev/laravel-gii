@@ -2,28 +2,24 @@
 
 namespace Sunshinev\Gii\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-use Sunshinev\Gii\Business\ModelBusiness;
+use Sunshinev\Gii\Business\ControllerBusiness;
 
-class ModelController extends Controller
+class CrudController extends Controller
 {
-
     public function index(Request $request)
     {
-        $response = ['files'=>[]];
+        $response = ['files' => []];
 
         try {
-            $response['table_list'] = ModelBusiness::getTableList();
-
             // preview
             if ($request->method() == 'POST') {
 
-                $tableName       = trim($request->post('table_name'));
-                $modelClassName  = trim($request->post('model_class_name'));
-                $parentClassName = trim($request->post('parent_class_name'));
+                $controllerClassName = trim($request->post('controller_class_name'));
+                $modelClassName      = trim($request->post('model_class_name'));
 
-                $fileList = ModelBusiness::preview($tableName, $modelClassName, $parentClassName);
+                $fileList = (new ControllerBusiness($controllerClassName, $modelClassName))->preview();
 
                 $response['files'] = $fileList;
 
@@ -39,17 +35,17 @@ class ModelController extends Controller
                         ];
                     }
                     // generate
-                    $response['generate_info'] = ModelBusiness::generateFile($fileList, $waitingFiles);
+                    $response['generate_info'] = ControllerBusiness::generateFile($fileList, $waitingFiles);
                 }
             }
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             $response['alert'] = [
                 'type'    => 'error',
                 'message' => $exception->getMessage()
             ];
         }
 
-        $viewPath = 'gii_views::model';
+        $viewPath = 'gii_views::crud';
         return response()->view($viewPath, $response);
     }
 }
