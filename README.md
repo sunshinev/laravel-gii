@@ -2,13 +2,13 @@
 
 [中文文档](https://github.com/sunshinev/laravel-gii/blob/master/README_zh_CN.md)
 
-![Travis (.com)](https://img.shields.io/travis/com/sunshinev/laravel-gii)
+[![Packagist Version](https://img.shields.io/packagist/v/sunshinev/laravel-gii)](https://packagist.org/packages/sunshinev/laravel-gii)
+[![Travis (.com)](https://img.shields.io/travis/com/sunshinev/laravel-gii)](https://travis-ci.com/sunshinev/laravel-gii/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/sunshinev/laravel-gii)
 ![GitHub](https://img.shields.io/github/license/sunshinev/laravel-gii)
 ![GitHub repo size](https://img.shields.io/github/repo-size/sunshinev/laravel-gii)
 ![GitHub stars](https://img.shields.io/github/stars/sunshinev/laravel-gii?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/sunshinev/laravel-gii?style=social)
-![](https://img.shields.io/badge/laravel-package-brightgreen)
 
 Suitable for fast B-side background development
 
