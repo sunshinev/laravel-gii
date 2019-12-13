@@ -69,15 +69,21 @@ CRUD的创建，需要依赖之前创建的模型。
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
 
-文件对比
+#### 文件对比
+
+工具会将新生成的文件与已存在的文件进行差异对比，方便查看修改部分，控制修改范围。
+
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-generate.gif)
 
+#### 路由追加
+新生成的页面，会自动追加到路由配置文件
+![b58eb0bd955bafea27540d6227e611731576209355.jpg](https://github.com/sunshinev/remote_pics/raw/master/b58eb0bd955bafea27540d6227e611731576209355.jpg)
 
 
 ## CRUD后台效果
 
 #### 列表页
-该页面包含能力：
+包含全面的增删查改功能
 
 - 列表
 - 分页
@@ -99,14 +105,39 @@ CRUD的创建，需要依赖之前创建的模型。
 #### 编辑页面
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_edit.png)
 
-## 相关问题
+## 建议
 
-1. 如果生成完Model之后，默认的会使用env中配置的connection，如果需要调整，请修改Model文件。
+#### 如果想用Mongo怎么办？
+如果生成完Model之后，默认的会使用env中配置的connection，如果需要调整，需要修改生成的Model文件。
+```php
+    // if connection is empty ,use default connection
+    protected $connection = '';
+```
 
-## 需了解
+#### 后台页面如何支持其他组件？
+后台页面统一使用iview作为前端框架，目前支持iview4的所有组件，可直接在生成的blade模板文件中添加组件即可。
 
-项目创建生成的模板需要依赖于[《github:laravel-fe-render》](https://github.com/sunshinev/laravel-fe-render) 项目，作为模板解析。
+[iviewui文档](https://www.iviewui.com/docs/introduce)
 
-后台页面依赖项目编译后的app.js [《github:base-fe》](https://github.com/sunshinev/base-fe) 
+#### 如何升级页面的iview组件？
+生成的CRUD后台使用的是基于[laravel-fe-render](https://github.com/sunshinev/laravel-fe-render)和[base-fe](https://github.com/sunshinev/base-fe) 两个项目，其中`base-fe`是Vue+iview的打包，如下：
+
+```js
+import Vue from 'vue'
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+Vue.use(ViewUI);
+```
+
+可以Fork `base-fe`项目，然后进行iview升级，将生成的dist目录放到`laravel-fe-render`项目的`assets`目录，然后重新发布即可.
+
+
+
+## 相关资料
+
+[https://github.com/sunshinev/laravel-fe-render](https://github.com/sunshinev/laravel-fe-render) 
+
+[https://github.com/sunshinev/base-fe](https://github.com/sunshinev/base-fe) 
+
 
 [https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/laravel-gii)
