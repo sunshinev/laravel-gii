@@ -1,6 +1,4 @@
-# Laravel-Gii visual code generation tool CRUD + GUI
-
-[中文文档](https://github.com/sunshinev/laravel-gii/blob/master/README_zh_CN.md)
+# Laravel-Gii 可视化代码生成工具  CRUD +GUI 
 
 [![Packagist Version](https://img.shields.io/packagist/v/sunshinev/laravel-gii)](https://packagist.org/packages/sunshinev/laravel-gii)
 [![Travis (.com)](https://img.shields.io/travis/com/sunshinev/laravel-gii)](https://travis-ci.com/sunshinev/laravel-gii/)
@@ -10,129 +8,105 @@
 ![GitHub stars](https://img.shields.io/github/stars/sunshinev/laravel-gii?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/sunshinev/laravel-gii?style=social)
 
-Suitable for fast B-side background development
+适用于快速B端后台开发，根据MySQL的表结构生成对应的Model、Observer、Controller、View、Route等相关项目文件
 
-According to the MySQL table structure, the corresponding project files such as Model, Observer, Controller, View, and Route are generated, and the complete CRUD background can be automatically created by simply clicking the mouse.
+![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-preview.gif)
 
+[TOC]
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
+## 安装
 
-   * [laravel-gii](#laravel-gii)
-      * [Need to know before installing](#need-to-know-before-installing)
-      * [Installation](#installation)
-         * [Installation package](#installation-package)
-         * [Publishing files](#publishing-files)
-         * [Then visit](#then-visit)
-      * [Use](#use)
-         * [Creating a Model Model](#creating-a-model-model)
-            * [Form Description](#form-description)
-         * [Create CRUD](#create-crud)
-            * [Form Description](#form-description-1)
-         * [File Difference Comparison](#file-difference-comparison)
-         * [Final file content](#final-file-content)
-      * [Create a post page](#create-a-post-page)
-         * [List](#list)
-         * [Delete   Batch Delete](#delete--batch-delete)
-         * [Row preview](#row-preview)
-         * [Edit page](#edit-page)
-      * [related question](#related-question)
-
-
-## Installation
-
-### Installation package
+### 扩展包
 
 ```
 Composer require sunshinev/laravel-gii -vvv
 ```
 
-
-### Publishing files
-> This operation will release the assets static file to the public directory
+### 发布
+> 该操作会发布assets静态文件，到public目录下
 
 ```
-Php artisan vendor:publish
+php artisan vendor:publish
 ```
-select
+选择
 `Tag: laravel-gii`
 
 
-### Then visit
+### 访问
 `http:[domain]/gii/model`
 
 
-## Use
+## 操作说明
 
 
-### Creating a Model Model
+### 一键生成Model模型
 
-#### Form Description
-1. Table name (supports drop-down selection)
-2. Model class name (want to create a model class, including the namespace)
-3. The parent class of the model inheritance (if Mongo can inherit `Jenssegers\Mongodb\Eloquent\Model`, MySQL uses `Illuminate\Database\Eloquent\Model`)
+表单说明
+
+1. 表名称（支持下拉选择）
+2. Model类名（想要创建模型类，包含命名空间）
+3. 模型继承的父类（如果是Mongo可以继承`Jenssegers\Mongodb\Eloquent\Model`，MySQL用`Illuminate\Database\Eloquent\Model`）
 
 
-A list of generated files, blue for new files, red for existing files but different, white for existing files.
+生成的文件列表，蓝色代表全新文件，红色代表已有文件但是存在不同，白色代表已有文件。
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/success.png)
 
-### Create CRUD
+### 一键生成CRUD文件
 
-CRUD creation depends on the model created before.
+CRUD的创建，需要依赖之前创建的模型。
 
-This operation will be generated at the same time:
+该操作会同时生成：
 
 - route
 - controller
 - views
 
-#### Form Description
+表单说明
 
-1. Controller name (including namespace)
-2. The previously created model class
+1. 控制器名称（包含命名空间）
+2. 之前创建的模型类
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
 
-### File Difference Comparison
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/diff2.png)
-
-### Final file content
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/viewfile.png)
+文件对比
+![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-generate.gif)
 
 
-## Create a post page
 
-### List
-This page contains the ability:
+## CRUD后台效果
 
-- list
-- Pagination
-- Search
-- delete + batch delete
-- preview
-- Details
-- Edit
+#### 列表页
+该页面包含能力：
+
+- 列表
+- 分页
+- 检索
+- 删除+批量删除
+- 预览
+- 详情
+- 编辑
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_list.png)
-### Delete + Batch Delete
-Cancel button to prevent accidental deletion
+#### 删除+批量删除
+取消按钮放大，防止误删
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_delete.png)
 
-### Row preview
+#### 行预览
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_view.png)
 
-### Edit page
+#### 编辑页面
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_edit.png)
 
-## related question
+## 相关问题
 
-1. If the Model is generated, the default configuration will be used in env. If you need to adjust, please modify the Model file.
+1. 如果生成完Model之后，默认的会使用env中配置的connection，如果需要调整，请修改Model文件。
 
-## Need to know
+## 需了解
 
-The template generated by the project creation needs to rely on the [github:laravel-fe-render] (https://github.com/sunshinev/laravel-fe-render) project as a template parsing.
+项目创建生成的模板需要依赖于[《github:laravel-fe-render》](https://github.com/sunshinev/laravel-fe-render) 项目，作为模板解析。
 
-The background page depends on the compiled app.js ["github:base-fe"] (https://github.com/sunshinev/base-fe)
+后台页面依赖项目编译后的app.js [《github:base-fe》](https://github.com/sunshinev/base-fe) 
 
 [https://github.com/sunshinev/laravel-gii](https://github.com/sunshinev/laravel-gii)
