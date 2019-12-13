@@ -10,8 +10,9 @@
 
 It is suitable for rapid B-side background development, and generates corresponding Model, Observer, Controller, View, Route and other related project files according to the MySQL table structure.
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
 [中文文档](https://github.com/sunshinev/laravel-gii/blob/master/README_zh_CN.md)
+![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
+
 
 [TOC]
 
@@ -39,21 +40,21 @@ select
 
 ## Instructions
 
-
-### Generate a Model with One Click
+### Generate Model
 
 Form description
 
 1. Table name (support drop-down selection)
 2. Model class name (want to create model classes, including namespaces)
-3. Parent class of model inheritance (If it is Mongo, it can inherit `Jenssegers\Mongodb\Eloquent\Model`, MySQL uses` Illuminate\Database\Eloquent\Model`)
+3. Parent class of model inheritance (If it is Mongo, it can inherit `Jenssegers \ Mongodb \ Eloquent \ Model`, MySQL uses` Illuminate \ Database \ Eloquent \ Model`)
 
 
 The generated file list, blue represents a new file, red represents an existing file but different, and white represents an existing file.
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/success.png)
+![07656dfd51458bb03cb50825aef4fbc01576222008.jpg](https://github.com/sunshinev/remote_pics/raw/master/07656dfd51458bb03cb50825aef4fbc01576222008.jpg)
 
-### Generate CRUD files with one click
+
+### Generate CRUD
 
 The creation of CRUD depends on the previously created model.
 
@@ -68,7 +69,12 @@ Form description
 1. Controller name (including namespace)
 2. The model class created earlier
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
+![85bce766f1a574d97ac931c8b98c29591576222771.jpg](https://github.com/sunshinev/remote_pics/raw/master/85bce766f1a574d97ac931c8b98c29591576222771.jpg)
+
+## Features
+#### MySQL list loading
+Pull list from configured MySQL database
+![135efc4b0abc7a7baf67793fb8de30901576222494.jpg](https://github.com/sunshinev/remote_pics/raw/master/135efc4b0abc7a7baf67793fb8de30901576222494.jpg)
 
 #### File comparison
 
@@ -94,17 +100,21 @@ Includes comprehensive additions, deletions, and changes
 - Details
 - Edit
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_list.png)
+![a7124e651545e7f462e898ffb37704a41576223115.jpg](https://github.com/sunshinev/remote_pics/raw/master/a7124e651545e7f462e898ffb37704a41576223115.jpg)
+
 #### delete + batch delete
 Cancel button zoom in to prevent accidental deletion
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_delete.png)
+![fa926f38e95888fd4a3c3aa055d202f41576223165.jpg](https://github.com/sunshinev/remote_pics/raw/master/fa926f38e95888fd4a3c3aa055d202f41576223165.jpg)
+
 
 #### Row Preview
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_view.png)
+![0b2b1603c043aec9b5cee84a17e26f291576223207.jpg](https://github.com/sunshinev/remote_pics/raw/master/0b2b1603c043aec9b5cee84a17e26f291576223207.jpg)
+
 
 #### Edit page
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_edit.png)
+![bc43b30f13de17e0a2a899a59f647d3a1576223248.jpg](https://github.com/sunshinev/remote_pics/raw/master/bc43b30f13de17e0a2a899a59f647d3a1576223248.jpg)
+
 
 ## Suggest
 

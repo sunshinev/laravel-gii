@@ -38,8 +38,7 @@ php artisan vendor:publish
 
 ## 操作说明
 
-
-### 一键生成Model模型
+### 生成Model模型
 
 表单说明
 
@@ -50,9 +49,10 @@ php artisan vendor:publish
 
 生成的文件列表，蓝色代表全新文件，红色代表已有文件但是存在不同，白色代表已有文件。
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/success.png)
+![07656dfd51458bb03cb50825aef4fbc01576222008.jpg](https://github.com/sunshinev/remote_pics/raw/master/07656dfd51458bb03cb50825aef4fbc01576222008.jpg)
 
-### 一键生成CRUD文件
+
+### 生成CRUD
 
 CRUD的创建，需要依赖之前创建的模型。
 
@@ -67,7 +67,12 @@ CRUD的创建，需要依赖之前创建的模型。
 1. 控制器名称（包含命名空间）
 2. 之前创建的模型类
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/controller.png)
+![85bce766f1a574d97ac931c8b98c29591576222771.jpg](https://github.com/sunshinev/remote_pics/raw/master/85bce766f1a574d97ac931c8b98c29591576222771.jpg)
+
+## 特性
+#### MySQL列表加载
+从配置的MySQL数据库中拉取列表
+![135efc4b0abc7a7baf67793fb8de30901576222494.jpg](https://github.com/sunshinev/remote_pics/raw/master/135efc4b0abc7a7baf67793fb8de30901576222494.jpg)
 
 #### 文件对比
 
@@ -93,17 +98,21 @@ CRUD的创建，需要依赖之前创建的模型。
 - 详情
 - 编辑
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_list.png)
+![a7124e651545e7f462e898ffb37704a41576223115.jpg](https://github.com/sunshinev/remote_pics/raw/master/a7124e651545e7f462e898ffb37704a41576223115.jpg)
+
 #### 删除+批量删除
 取消按钮放大，防止误删
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_delete.png)
+![fa926f38e95888fd4a3c3aa055d202f41576223165.jpg](https://github.com/sunshinev/remote_pics/raw/master/fa926f38e95888fd4a3c3aa055d202f41576223165.jpg)
+
 
 #### 行预览
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_view.png)
+![0b2b1603c043aec9b5cee84a17e26f291576223207.jpg](https://github.com/sunshinev/remote_pics/raw/master/0b2b1603c043aec9b5cee84a17e26f291576223207.jpg)
+
 
 #### 编辑页面
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/bg/bg_edit.png)
+![bc43b30f13de17e0a2a899a59f647d3a1576223248.jpg](https://github.com/sunshinev/remote_pics/raw/master/bc43b30f13de17e0a2a899a59f647d3a1576223248.jpg)
+
 
 ## 建议
 
