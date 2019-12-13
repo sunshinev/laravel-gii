@@ -14,7 +14,7 @@ class {{controller_class}} extends Controller
 {
 
     /**
-     * 列表页
+     * list
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -36,7 +36,7 @@ class {{controller_class}} extends Controller
 
     /**
      *
-     * 详情页
+     * detail
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -57,7 +57,7 @@ class {{controller_class}} extends Controller
     }
 
     /**
-     * 保存
+     * save
      *
      * @param Request $request
      */

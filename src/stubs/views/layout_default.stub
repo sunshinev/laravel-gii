@@ -55,7 +55,7 @@
                 // config global menu list
                 menu:[{
                     icon: 'ios-people',
-                    title: '菜单',
+                    title: 'Menu',
                     sub_menu:[{{menus}}]
                 }],
 

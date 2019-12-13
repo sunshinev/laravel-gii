@@ -12,7 +12,7 @@ namespace Sunshinev\Gii\Business;
 use Illuminate\Support\Facades\DB;
 
 /**
- * 模型创建
+ * create model
  *
  * Class ModelBusiness
  * @package Sunshinev\Gii\Business
@@ -34,7 +34,7 @@ class ModelBusiness extends GenerateBusiness
 
         foreach (func_get_args() as $k => $v) {
             if (!$v) {
-                throw new \Exception('缺少参数');
+                throw new \Exception('Missing Params');
             }
         }
 
@@ -44,26 +44,26 @@ class ModelBusiness extends GenerateBusiness
             'model'      => __DIR__ . '/../stubs/model.stub'
         ];
 
-        // 基本模型
+        // basic model
         $baseModelClassNameArr = explode('\\', $baseModelClassName);
         $baseModelClass        = end($baseModelClassNameArr);
         $baseModelNamespace    = trim(substr($baseModelClassName, 0, strrpos($baseModelClassName, '\\')), '\\');
 
-        // 模型父类
+        // parent model class
         $modelParentClassNameArr = explode('\\', $modelParentClassName);
         $modelParentClass        = end($modelParentClassNameArr);
 
-        // 事件观察者
+        // observer
         $observerClass     = $baseModelClass . 'Observer';
         $observerClassName = str_replace('Models', 'Observers\\Models', $baseModelNamespace) . '\\' . $observerClass;
         $observerNamespace = trim(substr($observerClassName, 0, strrpos($observerClassName, '\\')), '\\');
 
-        // 模型组件扩展
+        // model
         $modelClass     = $baseModelClass . 'Model';
         $modelNamespace = $baseModelNamespace;//trim(substr($baseModelNamespace, 0, strrpos($baseModelNamespace, '\\')), '\\');
         $modelClassName = $modelNamespace . '\\' . $modelClass;
 
-        // 表结构
+        // table struct
         $tableStruct = self::createTableStruct($tableName, $modelParentClassName);
 
         $fields = [
@@ -121,7 +121,7 @@ class ModelBusiness extends GenerateBusiness
     {
         $str = "\n";
         foreach ($tableStruct as $col) {
-            // 生成attribute的时候过滤了主键，主键不需要默认值，否则会导致写入为空或者null
+            // The primary key is filtered when generating attributes. The primary key does not need a default value, otherwise the write will be empty or null
             if (in_array($col['Field'], ['id', '_id'])) {
                 continue;
             }
@@ -148,7 +148,6 @@ class ModelBusiness extends GenerateBusiness
 
 
     /**
-     * 读取表结构
      *
      *  array(9) {
      * ["Field"]=>
@@ -173,7 +172,7 @@ class ModelBusiness extends GenerateBusiness
      */
     private static function createTableStruct($tableName, $parentClassName)
     {
-        // desc table 查看表结构
+        // desc table
         $tableStruct = DB::connection('mysql')->select('show full fields from ' . $tableName);
         $tableStruct = json_decode(json_encode($tableStruct), true);
 
@@ -188,7 +187,7 @@ class ModelBusiness extends GenerateBusiness
             }
         }
 
-        // 始终保证有create_at 和update_at
+        // Make sure always have fields `create_at` & `update_at`
         $tableStruct = array_merge($tableStruct, [
             [
                 'Field'      => $createdAt,
@@ -219,7 +218,6 @@ class ModelBusiness extends GenerateBusiness
     }
 
     /**
-     * 获取表列表
      * @return array
      */
     public static function getTableList()

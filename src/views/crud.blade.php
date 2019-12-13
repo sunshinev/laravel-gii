@@ -19,20 +19,20 @@
     <i-row>
         <i-col span="12">
             <i-form :label-width="200" method="post">
-                <i-form-item label="controller控制器">
+                <i-form-item label="Controller">
                     <i-input name="controller_class_name" value="{{request()->controller_class_name}}"
                              placeholder="ex: App\Http\Controllers\{module_name}\{controller_name}"
                              :autocomplete="true"></i-input>
                     {{--<i-auto-complete  value="{{request()->controller_class_name}}" name="controller_class_name" placeholder="click to choose or input custom"></i-auto-complete>--}}
                 </i-form-item>
-                <i-form-item label="Model类名">
+                <i-form-item label="Model name">
                     <i-input name="model_class_name" value="{{request()->model_class_name}}" :autocomplete="true"
                              placeholder="ex: App\Models\User\Mongo\Userinfo"></i-input>
                 </i-form-item>
                 <i-form-item>
-                    <i-button type="primary" html-type="submit" name="preview">生成预览</i-button>
+                    <i-button type="primary" html-type="submit" name="preview">Preview</i-button>
                     @if(isset($files))
-                        <i-button type="success" html-type="submit" name="generate" :value="1">创建文件</i-button>
+                        <i-button type="success" html-type="submit" name="generate" :value="1">Generate</i-button>
                         <input type="hidden" name="waitingfiles" v-model="waitingfiles">
                     @endif
                 </i-form-item>
@@ -58,8 +58,8 @@
     <i-row>
         <i-col span="20">
             <div style="text-align: right">
-                <i-button @click="handleSelectAll(true)">设置全选</i-button>
-                <i-button @click="handleSelectAll(false)">取消全选</i-button>
+                <i-button @click="handleSelectAll(true)">Select all</i-button>
+                <i-button @click="handleSelectAll(false)">Unselect all</i-button>
             </div>
             <br>
             <i-table :columns="table_col" :data="table_data" ref="selection"

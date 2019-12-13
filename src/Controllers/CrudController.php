@@ -23,15 +23,15 @@ class CrudController extends Controller
 
                 $response['files'] = $fileList;
 
-                // 创建文件
+                // generate file
                 if (!is_null($request->post('generate'))) {
 
                     $waitingFiles = $request->post('waitingfiles');
-                    // 异常
+                    // exception
                     if (!$waitingFiles) {
                         $response['alert'] = [
                             'type'    => 'error',
-                            'message' => '请选择需要创建的文件'
+                            'message' => 'Please select items first!'
                         ];
                     }
                     // generate

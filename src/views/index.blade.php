@@ -45,8 +45,8 @@
             <i-layout>
                 <i-sider hide-trigger :style="{background: '#fff'}">
                     <i-menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
-                        <i-menu-item name="1" to="/gii/model">创建 Model</i-menu-item>
-                        <i-menu-item name="2" to="/gii/crud">创建 CURD</i-menu-item>
+                        <i-menu-item name="1" to="/gii/model">Create Model</i-menu-item>
+                        <i-menu-item name="2" to="/gii/crud">Create CURD</i-menu-item>
                     </i-menu>
                 </i-sider>
                 <i-layout :style="{padding: '0 24px 24px'}">

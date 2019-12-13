@@ -13,8 +13,8 @@
             </i-row>
             <i-row>
                 <i-col span="6" offset="2" :style="{textAlign:'right'}">
-                    <i-button type="success" @click="goSave">保存</i-button>
-                    <i-button type="info" @click="goBack">返回</i-button>
+                    <i-button type="success" @click="goSave">Save</i-button>
+                    <i-button type="info" @click="goBack">Back</i-button>
                 </i-col>
             </i-row>
         </i-content>
@@ -32,7 +32,6 @@
         },
         props: ['{{model_key_name}}'],
         methods: {
-            // 初始化数据表
             initApiDetail: function() {
                 this.axios
                     .post('{{detail_api}}',JSON.stringify({{{model_key_name}}:this.routeId}))

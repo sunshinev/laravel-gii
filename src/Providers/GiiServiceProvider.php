@@ -25,7 +25,7 @@ class GiiServiceProvider extends ServiceProvider
     {
 
         $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
-        // 扩展视图
+        // extend views path
         $this->loadViewsFrom(__DIR__.'/../views/', 'gii_views');
 
         $this->publishes([

@@ -13,11 +13,11 @@
             </i-row>
             <i-row>
                 <i-col span="12" >
-                    <i-button type="default" @click="invokeBatchDelete">批量删除</i-button>
+                    <i-button type="default" @click="invokeBatchDelete">Batch Delete</i-button>
                 </i-col>
                 <i-col span="12" :style="{textAlign:'right'}">
-                    <i-button type="info" @click="invokeSearch">点击检索</i-button>
-                    <i-button type="default" @click="invokeCreate">新建</i-button>
+                    <i-button type="info" @click="invokeSearch">Search</i-button>
+                    <i-button type="default" @click="invokeCreate">New</i-button>
                 </i-col>
             </i-row>
             <br>
@@ -44,16 +44,16 @@
                     <span>Delete confirmation</span>
                 </p>
                 <div style="text-align:center">
-                    <p>确定删除该条记录</p>
-                    <p>Will you delete it?</p>
+                    <p>confirm delete?</p>
+                    <p>The operation delete record from the database</p>
                 </div>
                 <div slot="footer">
                     <i-row type="flex" justify="end">
                         <i-col span="12">
-                            <i-button type="info" size="large" long @click="deleteModal = false;deleteModalData = {}">取消</i-button>
+                            <i-button type="info" size="large" long @click="deleteModal = false;deleteModalData = {}">Cancel</i-button>
                         </i-col>
                         <i-col span="4">
-                            <i-button type="error" size="large" @click="invokeConfirmDelete(deleteModalData)" >删除</i-button>
+                            <i-button type="error" size="large" @click="invokeConfirmDelete(deleteModalData)" >Delete</i-button>
                         </i-col>
                     </i-row>
                 </div>
@@ -65,9 +65,9 @@
                     <span>Batch Delete confirmation</span>
                 </p>
                 <div style="text-align:center">
-                    <p>确定删除如下记录?</p>
+                    <p>confirm delete?</p>
                     <p v-for="(value, name) in batchDeleteModalData">{{value}}</p>
-                    <p>Will you delete it?</p>
+                    <p>The operation deletes records from the database</p>
                 </div>
                 <div slot="footer">
                     <i-row type="flex" justify="end">
@@ -109,7 +109,6 @@
         },
         props: ['page'],
         methods: {
-            // 初始化数据表
             tableData: function() {
                 var pageStr = this.routePage ? '?page='+this.routePage : '';
 
@@ -132,7 +131,6 @@
                 this.$router.push({query:{page:page}})
             },
             invokeSearch: function() {
-                // 重置page
                 this.routePage = 1;
                 this.tableData();
             },
@@ -166,7 +164,7 @@
             },
             invokeBatchDelete: function() {
                 if(this.batchDeleteModalData.length == 0) {
-                    alert('请先选择需要删除的数据！！');
+                    alert('Please select items first!');
                     return;
                 }
                 this.batchDeleteModal=true

@@ -9,13 +9,7 @@
 namespace Sunshinev\Gii\Business;
 
 /**
- * CRUD创建
- * 包含视图
- * RenderController
- * 以及接口的Controller
- *
- * 同时要生成路由以及视图blade文件
- *
+ * Generate CRUD 
  */
 class ControllerBusiness extends GenerateBusiness
 {
@@ -63,7 +57,7 @@ class ControllerBusiness extends GenerateBusiness
 
 
     /**
-     * 路由映射控制器方法
+     * Route mapping controller method
      *
      * @var array
      */
@@ -116,7 +110,7 @@ class ControllerBusiness extends GenerateBusiness
 
         // /account-book/api/manage/user/list
         $urlPath = parse_url(config('app.url'))['path'] ?? '';
-        // 项目的根域名
+        // project
         $this->project = substr($urlPath, strpos($urlPath, '/'));
 
         $this->m2cPath = $this->getM2cPath();
@@ -157,7 +151,7 @@ class ControllerBusiness extends GenerateBusiness
     {
         $stubFile = __DIR__ . '/../stubs/controller.stub';
 
-        // 转换model类
+        // model
         $modelClass     = $this->modelClass . 'Model';
         $modelClassName = $this->modelNamespace . '\\' . $modelClass;
 
@@ -197,7 +191,7 @@ class ControllerBusiness extends GenerateBusiness
     {
         $stubFile = __DIR__ . '/../stubs/views/list.stub';
 
-        // 获取模型的attributes + key
+        // Get attributes + key
         $attributes = $this->model->getAttributes();
 
         // table
@@ -233,7 +227,6 @@ class ControllerBusiness extends GenerateBusiness
     {
         $stubFile = __DIR__ . '/../stubs/views/edit.stub';
 
-        // 获取模型的attributes + key
         $attributes = $this->model->getAttributes();
 
         // table
@@ -263,7 +256,6 @@ class ControllerBusiness extends GenerateBusiness
     {
         $stubFile = __DIR__ . '/../stubs/views/detail.stub';
 
-        // 获取模型的attributes + key
         $attributes = $this->model->getAttributes();
 
         // table
@@ -292,7 +284,6 @@ class ControllerBusiness extends GenerateBusiness
     {
         $stubFile = __DIR__ . '/../stubs/views/create.stub';
 
-        // 获取模型的attributes + key
         $attributes = $this->model->getAttributes();
 
         // table
@@ -362,7 +353,7 @@ class ControllerBusiness extends GenerateBusiness
 
     private function handleApiRoute()
     {
-        // api 路由
+        // api routes
         $apiRoutes = [];
 
         $m2cPath = $this->m2cPath ? '/' . $this->m2cPath : '';
