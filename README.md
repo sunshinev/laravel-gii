@@ -11,6 +11,7 @@
 It is suitable for rapid B-side background development, and generates corresponding Model, Observer, Controller, View, Route and other related project files according to the MySQL table structure.
 
 ![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-preview.gif)
+[中文文档](https://github.com/sunshinev/laravel-gii/blob/master/README_zh_CN.md)
 
 [TOC]
 
@@ -19,7 +20,7 @@ It is suitable for rapid B-side background development, and generates correspond
 ### Expansion Pack
 
 ```
-Composer require sunshinev / laravel-gii -vvv
+Composer require sunshinev/laravel-gii -vvv
 ```
 
 ### Post
@@ -33,7 +34,7 @@ select
 
 
 ### Visit
-`http: [domain] / gii / model`
+`http: [domain]/gii/model`
 
 
 ## Instructions
@@ -45,7 +46,7 @@ Form description
 
 1. Table name (support drop-down selection)
 2. Model class name (want to create model classes, including namespaces)
-3. Parent class of model inheritance (If it is Mongo, it can inherit `Jenssegers \ Mongodb \ Eloquent \ Model`, MySQL uses` Illuminate \ Database \ Eloquent \ Model`)
+3. Parent class of model inheritance (If it is Mongo, it can inherit `Jenssegers\Mongodb\Eloquent\Model`, MySQL uses` Illuminate\Database\Eloquent\Model`)
 
 
 The generated file list, blue represents a new file, red represents an existing file but different, and white represents an existing file.
@@ -125,7 +126,7 @@ The generated CRUD background is based on [laravel-fe-render](https://github.com
 ```js
 import Vue from 'vue'
 import ViewUI from 'view-design';
-import 'view-design / dist / styles / iview.css';
+import 'view-design/dist/styles/iview.css';
 Vue.use (ViewUI);
 ```
 
