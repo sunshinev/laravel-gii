@@ -10,7 +10,7 @@
 
 It is suitable for rapid B-side background development, and generates corresponding Model, Observer, Controller, View, Route and other related project files according to the MySQL table structure.
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-preview.gif)
+![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
 [中文文档](https://github.com/sunshinev/laravel-gii/blob/master/README_zh_CN.md)
 
 [TOC]

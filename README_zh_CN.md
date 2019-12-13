@@ -10,7 +10,7 @@
 
 适用于快速B端后台开发，根据MySQL的表结构生成对应的Model、Observer、Controller、View、Route等相关项目文件
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-preview.gif)
+![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
 
 [TOC]
 
