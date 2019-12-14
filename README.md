@@ -51,7 +51,7 @@ Form description
 
 The generated file list, blue represents a new file, red represents an existing file but different, and white represents an existing file.
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
+[![e1daf65668566cd8f7dd417211820a091576311651.jpg](https://github.com/sunshinev/remote_pics/raw/master/e1daf65668566cd8f7dd417211820a091576311651.jpg)](https://sunshinev.github.io/laravel-gii-home/index_en.html)
 
 
 ### Generate CRUD
