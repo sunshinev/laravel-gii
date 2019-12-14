@@ -11,7 +11,7 @@
 It is suitable for rapid B-side background development, and generates corresponding Model, Observer, Controller, View, Route and other related project files according to the MySQL table structure.
 
 [中文文档](https://github.com/sunshinev/laravel-gii/blob/master/README_zh_CN.md)
-![e1daf65668566cd8f7dd417211820a091576311651.jpg](https://github.com/sunshinev/remote_pics/raw/master/e1daf65668566cd8f7dd417211820a091576311651.jpg)
+[![e1daf65668566cd8f7dd417211820a091576311651.jpg](https://github.com/sunshinev/remote_pics/raw/master/e1daf65668566cd8f7dd417211820a091576311651.jpg)](https://sunshinev.github.io/laravel-gii-home/index_en.html)
 
 
 [TOC]
@@ -51,7 +51,7 @@ Form description
 
 The generated file list, blue represents a new file, red represents an existing file but different, and white represents an existing file.
 
-[![e1daf65668566cd8f7dd417211820a091576311651.jpg](https://github.com/sunshinev/remote_pics/raw/master/e1daf65668566cd8f7dd417211820a091576311651.jpg)](https://sunshinev.github.io/laravel-gii-home/index_en.html)
+![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
 
 
 ### Generate CRUD
