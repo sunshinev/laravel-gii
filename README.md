@@ -21,14 +21,14 @@ It is suitable for rapid B-side background development, and generates correspond
 ### Expansion Pack
 
 ```
-Composer require sunshinev/laravel-gii -vvv
+composer require sunshinev/laravel-gii -vvv
 ```
 
 ### Post
 > This operation will publish assets static files to the public directory
 
 ```
-php artisan vendor: publish
+php artisan vendor:publish
 ```
 select
 `Tag: laravel-gii`
