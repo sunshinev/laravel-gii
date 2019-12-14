@@ -10,7 +10,7 @@
 
 适用于快速B端后台开发，根据MySQL的表结构生成对应的Model、Observer、Controller、View、Route等相关项目文件
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
+![e1daf65668566cd8f7dd417211820a091576311651.jpg](https://github.com/sunshinev/remote_pics/raw/master/e1daf65668566cd8f7dd417211820a091576311651.jpg)
 
 [TOC]
 
@@ -49,7 +49,8 @@ php artisan vendor:publish
 
 生成的文件列表，蓝色代表全新文件，红色代表已有文件但是存在不同，白色代表已有文件。
 
-![07656dfd51458bb03cb50825aef4fbc01576222008.jpg](https://github.com/sunshinev/remote_pics/raw/master/07656dfd51458bb03cb50825aef4fbc01576222008.jpg)
+![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
+
 
 
 ### 生成CRUD
