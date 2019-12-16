@@ -28,10 +28,8 @@ composer require sunshinev/laravel-gii -vvv
 > This operation will publish assets static files to the public directory
 
 ```
-php artisan vendor:publish
+php artisan vendor:publish  --tag laravel-gii
 ```
-select
-`Tag: laravel-gii`
 
 
 ### Visit

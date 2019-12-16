@@ -26,10 +26,8 @@ Composer require sunshinev/laravel-gii -vvv
 > 该操作会发布assets静态文件，到public目录下
 
 ```
-php artisan vendor:publish
+php artisan vendor:publish  --tag laravel-gii
 ```
-选择
-`Tag: laravel-gii`
 
 
 ### 访问
