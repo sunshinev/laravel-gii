@@ -58,12 +58,8 @@
         </i-layout>
     </div>
 </div>
-<script src="{{URL::asset('gii_assets/vue.js')}}"></script>
-<script src="{{URL::asset('gii_assets/iview.js')}}"></script>
-<script src="//unpkg.com/view-design/dist/locale/en-US.js"></script>
-<script>
-    iview.lang('en-US');
-</script>
+<script src="{{URL::asset('gii_assets/vue.min.js')}}"></script>
+<script src="{{URL::asset('gii_assets/iview.min.js')}}"></script>
 @yield('assets')
 @section('new_vue')
 <script>

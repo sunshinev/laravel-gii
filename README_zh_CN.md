@@ -140,6 +140,10 @@ Vue.use(ViewUI);
 可以Fork `base-fe`项目，然后进行iview升级，将生成的dist目录放到`laravel-fe-render`项目的`assets`目录，然后重新发布即可.
 
 
+#### 关于Gii的iview.min.js
+请参考 https://github.com/sunshinev/ViewUI 项目，Fork后做了细微调整
+
+
 
 ## 相关资料
 
