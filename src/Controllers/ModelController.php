@@ -23,7 +23,7 @@ class ModelController extends Controller
                 $modelClassName  = trim($request->post('model_class_name'));
                 $parentClassName = trim($request->post('parent_class_name'));
 
-                $fileList = ModelBusiness::preview($tableName, $modelClassName, $parentClassName);
+                $fileList = (new ModelBusiness($tableName, $modelClassName, $parentClassName))->preview();
 
                 $response['files'] = $fileList;
 

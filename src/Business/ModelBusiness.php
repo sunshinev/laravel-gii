@@ -8,11 +8,10 @@
 
 namespace Sunshinev\Gii\Business;
 
-
 use Illuminate\Support\Facades\DB;
 
 /**
- * create model
+ * Create model
  *
  * Class ModelBusiness
  * @package Sunshinev\Gii\Business
@@ -21,23 +20,52 @@ class ModelBusiness extends GenerateBusiness
 {
 
     /**
-     * @param $tableName
-     * @param $modelClassName
-     * @param $parentClassName
-     * @return array
-     * @throws \ReflectionException
+     * @var
      */
-    public static function preview($tableName, $baseModelClassName, $modelParentClassName)
+    protected $tableName;
+    /**
+     * @var
+     */
+    protected $baseModelClassName;
+    /**
+     * @var
+     */
+    protected $modelParentClassName;
+
+    /**
+     * @var
+     */
+    protected $tableColumns;
+
+
+    /**
+     * ModelBusiness constructor.
+     * @param $tableName
+     * @param $baseModelClassName
+     * @param $modelParentClassName
+     * @throws \Exception
+     */
+    public function __construct($tableName, $baseModelClassName, $modelParentClassName)
     {
-
-        // check argvs
-
         foreach (func_get_args() as $k => $v) {
             if (!$v) {
-                throw new \Exception('Missing Params');
+                throw new \Exception('params is empty!');
             }
         }
 
+        $this->tableName            = $tableName;
+        $this->baseModelClassName   = $baseModelClassName;
+        $this->modelParentClassName = $modelParentClassName;
+
+    }
+
+
+    /**
+     * @return array
+     * @throws \ReflectionException
+     */
+    public function preview()
+    {
         $stubFiles = [
             'observer'   => __DIR__ . '/../stubs/observer.stub',
             'base_model' => __DIR__ . '/../stubs/basemodel.stub',
@@ -45,12 +73,12 @@ class ModelBusiness extends GenerateBusiness
         ];
 
         // basic model
-        $baseModelClassNameArr = explode('\\', $baseModelClassName);
+        $baseModelClassNameArr = explode('\\', $this->baseModelClassName);
         $baseModelClass        = end($baseModelClassNameArr);
-        $baseModelNamespace    = trim(substr($baseModelClassName, 0, strrpos($baseModelClassName, '\\')), '\\');
+        $baseModelNamespace    = trim(substr($this->baseModelClassName, 0, strrpos($this->baseModelClassName, '\\')), '\\');
 
         // parent model class
-        $modelParentClassNameArr = explode('\\', $modelParentClassName);
+        $modelParentClassNameArr = explode('\\', $this->modelParentClassName);
         $modelParentClass        = end($modelParentClassNameArr);
 
         // observer
@@ -60,25 +88,25 @@ class ModelBusiness extends GenerateBusiness
 
         // model
         $modelClass     = $baseModelClass . 'Model';
-        $modelNamespace = $baseModelNamespace;//trim(substr($baseModelNamespace, 0, strrpos($baseModelNamespace, '\\')), '\\');
+        $modelNamespace = $baseModelNamespace;
         $modelClassName = $modelNamespace . '\\' . $modelClass;
 
-        // table struct
-        $tableStruct = self::createTableStruct($tableName, $modelParentClassName);
+        // init table columns
+        $this->getTableColumns();
 
         $fields = [
             '{{base_model_class}}'        => $baseModelClass,
             '{{base_model_namespace}}'    => $baseModelNamespace,
-            '{{base_model_class_name}}'   => $baseModelClassName,
+            '{{base_model_class_name}}'   => $this->baseModelClassName,
             '{{model_namespace}}'         => $modelNamespace,
             '{{observer_class_name}}'     => $observerClassName,
             '{{observer_namespace}}'      => $observerNamespace,
-            '{{model_parent_class_name}}' => $modelParentClassName,
-            '{{remarks}}'                 => self::createRemarks($tableStruct),
+            '{{model_parent_class_name}}' => $this->modelParentClassName,
+            '{{remarks}}'                 => $this->createProperty(),
             '{{model_parent_class}}'      => $modelParentClass,
             '{{connection}}'              => '',
-            '{{table_name}}'              => $tableName,
-            '{{attributes}}'              => self::createAttributes($tableStruct),
+            '{{table_name}}'              => $this->tableName,
+            '{{attributes}}'              => $this->createAttributes(),
             '{{rules}}'                   => '',
             '{{observer_class}}'          => $observerClass,
         ];
@@ -92,17 +120,14 @@ class ModelBusiness extends GenerateBusiness
                 case 'base_model':
                     $namespace = $baseModelNamespace;
                     $class     = $baseModelClass;
-                    $classname = $baseModelClassName;
                     break;
                 case 'observer':
                     $namespace = $observerNamespace;
                     $class     = $observerClass;
-                    $classname = $observerClassName;
                     break;
                 case 'model':
                     $namespace = $modelNamespace;
                     $class     = $modelClass;
-                    $classname = $modelClassName;
                     break;
             }
 
@@ -114,107 +139,87 @@ class ModelBusiness extends GenerateBusiness
 
 
     /**
-     * @param $tableStruct
+     * Fetch table columns
+     *
+     * https://www.doctrine-project.org/projects/doctrine-dbal/en/2.10/reference/types.html#reference
+     * https://www.doctrine-project.org/projects/doctrine-dbal/en/2.10/reference/schema-manager.html#schema-manager
+     */
+    private function getTableColumns()
+    {
+        /**
+         * @var \Illuminate\Database\Connection $connection
+         */
+        $connection = DB::connection('mysql');
+        $schema     = $connection->getDoctrineSchemaManager();
+
+        $cols = $schema->listTableColumns($this->tableName);
+
+        $columns = [];
+        foreach ($cols as $col) {
+            $columns[] = [
+                'name'    => $col->getName(),
+                'type'    => $col->getType()->getName() ?? '', // Use Doctrine convert type
+                'default' => $col->getDefault() ?? '',
+                'comment' => $col->getComment() ?? '',
+            ];
+        }
+
+
+        $createdAt = $this->modelParentClassName::CREATED_AT;
+        $updatedAt = $this->modelParentClassName::UPDATED_AT;
+
+
+        // table struct verify
+        foreach ($columns as $key => $col) {
+            if (in_array($col['name'], [$createdAt, $updatedAt])) {
+                unset($columns[$key]);
+            }
+        }
+
+        // Make sure always have fields `create_at` & `update_at`
+        $this->tableColumns = array_merge($columns, [
+            [
+                'name'    => $createdAt,
+                'type'    => 'datetime',
+                'comment' => '',
+            ],
+            [
+                'name'    => $updatedAt,
+                'type'    => 'datetime',
+                'comment' => '',
+            ]
+        ]);
+    }
+
+    /**
      * @return string
      */
-    private static function createAttributes($tableStruct)
+    private function createAttributes()
     {
         $str = "\n";
-        foreach ($tableStruct as $col) {
+        foreach ($this->tableColumns as $col) {
             // The primary key is filtered when generating attributes. The primary key does not need a default value, otherwise the write will be empty or null
-            if (in_array($col['Field'], ['id', '_id'])) {
+            if (in_array($col['name'], ['id', '_id'])) {
                 continue;
             }
-            $default = isset($col['Default']) ? "'" . $col['Default'] . "'" : "''";
-            $str     .= "        '" . $col['Field'] . "' => " . $default . ",\n";
+            $default = isset($col['default']) ? "'" . $col['default'] . "'" : "''";
+            $str     .= "        '" . $col['name'] . "' => " . $default . ",\n";
         }
 
         return $str;
     }
 
     /**
-     * @param $tableStruct
      * @return string
      */
-    private static function createRemarks($tableStruct)
+    private function createProperty()
     {
         $str = "/**\n";
-        foreach ($tableStruct as $col) {
-            $str .= "* @property $" . $col['Field'] . "\n";
+        foreach ($this->tableColumns as $col) {
+            $str .= "* @property {$col['type']} $" . $col['name'] . " {$col['comment']}\n";
         }
 
         return $str . "*/";
-    }
-
-
-    /**
-     *
-     *  array(9) {
-     * ["Field"]=>
-     * string(2) "id"
-     * ["Type"]=>
-     * string(19) "bigint(20) unsigned"
-     * ["Collation"]=>
-     * NULL
-     * ["Null"]=>
-     * string(2) "NO"
-     * ["Key"]=>
-     * string(3) "PRI"
-     * ["Default"]=>
-     * NULL
-     * ["Extra"]=>
-     * string(14) "auto_increment"
-     * ["Privileges"]=>
-     * string(31) "select,insert,update,references"
-     * ["Comment"]=>
-     * string(2) "id"
-     * }
-     */
-    private static function createTableStruct($tableName, $parentClassName)
-    {
-        // desc table
-        $tableStruct = DB::connection('mysql')->select('show full fields from ' . $tableName);
-        $tableStruct = json_decode(json_encode($tableStruct), true);
-
-        $createdAt = $parentClassName::CREATED_AT;
-        $updatedAt = $parentClassName::UPDATED_AT;
-
-
-        // table struct verify
-        foreach ($tableStruct as $key => $col) {
-            if (in_array($col['Field'], [$createdAt, $updatedAt])) {
-                unset($tableStruct[$key]);
-            }
-        }
-
-        // Make sure always have fields `create_at` & `update_at`
-        $tableStruct = array_merge($tableStruct, [
-            [
-                'Field'      => $createdAt,
-                'Type'       => 'timestamp',
-                'Collation'  => '',
-                'Null'       => 'YES',
-                'Key'        => '',
-                'Default'    => '',
-                'Extra'      => '',
-                'Privileges' => '',
-                'Comment'    => '',
-            ],
-            [
-                'Field'      => $updatedAt,
-                'Type'       => 'timestamp',
-                'Collation'  => '',
-                'Null'       => 'YES',
-                'Key'        => '',
-                'Default'    => '',
-                'Extra'      => '',
-                'Privileges' => '',
-                'Comment'    => '',
-            ]
-        ]);
-
-
-        return $tableStruct;
     }
 
     /**
