@@ -14,6 +14,11 @@
 
 [TOC]
 
+## 注意
+因为是解析MySQL的表结构，并且根据字段生成模板，所以目前生成的Model类时只支持MySQL，但是CRUD可以使用支持mongo和MySQL两种connection。
+
+MySQL表结构请保证`id`,`created_at`,`updated_at`三个字段必须存在。
+
 ## 安装
 
 ### 扩展包
