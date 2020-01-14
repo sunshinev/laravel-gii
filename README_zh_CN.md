@@ -1,5 +1,11 @@
 # Laravel-Gii 可视化代码生成工具  CRUD +GUI 
 
+> Laravel Gii 为中小型项目快速创建管理后台，提供了一种新的可能。使用的过程中，你会发现很轻量，自由度很高。
+> 
+> 特别是熟悉iView的开发者，在生成的页面上，可以根据自己的需求，自定义页面，将默认Input修改为其他功能丰富的iView组件
+> 
+> 感谢支持 ^ ^ 
+
 [![Packagist Version](https://img.shields.io/packagist/v/sunshinev/laravel-gii)](https://packagist.org/packages/sunshinev/laravel-gii)
 [![Travis (.com)](https://img.shields.io/travis/com/sunshinev/laravel-gii)](https://travis-ci.com/sunshinev/laravel-gii/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/sunshinev/laravel-gii)
@@ -13,6 +19,10 @@
 [![e1daf65668566cd8f7dd417211820a091576311651.jpg](https://github.com/sunshinev/remote_pics/raw/master/e1daf65668566cd8f7dd417211820a091576311651.jpg)](https://sunshinev.github.io/laravel-gii-home/index.html)
 
 [TOC]
+
+## 官网
+
+https://sunshinev.github.io/laravel-gii-home
 
 ## 注意
 因为是解析MySQL的表结构，并且根据字段生成模板，所以目前生成的Model类时只支持MySQL，但是CRUD可以使用支持mongo和MySQL两种connection。

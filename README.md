@@ -1,5 +1,11 @@
 # Laravel-Gii Visual code generation tool CRUD + GUI
 
+>Laravel GII provides a new possibility for small and medium-sized projects to quickly create management background. In the process of using, you will find that it is very light and has a high degree of freedom.
+>
+>In particular, developers who are familiar with iView can customize the page according to their own needs and change the default input to other rich iView components
+>
+>Thank you for your support ^^
+
 [![Packagist Version](https://img.shields.io/packagist/v/sunshinev/laravel-gii)](https://packagist.org/packages/sunshinev/laravel-gii)
 [![Travis (.com)](https://img.shields.io/travis/com/sunshinev/laravel-gii)](https://travis-ci.com/sunshinev/laravel-gii/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/sunshinev/laravel-gii)
