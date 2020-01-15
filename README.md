@@ -8,6 +8,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/sunshinev/laravel-gii?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/sunshinev/laravel-gii?style=social)
 
+[中文Wiki](https://github.com/sunshinev/laravel-gii/blob/master/README_zh_CN.md)
 
 > Laravel Gii provides a new possibility for quickly creating management backends for small and medium-sized projects. In the process of using, you will find that it is very lightweight, has a high degree of freedom, and the internal implementation logic is simple.
 >
