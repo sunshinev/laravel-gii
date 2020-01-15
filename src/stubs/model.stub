@@ -22,8 +22,8 @@ class {{base_model_class}}Model extends {{base_model_class}}
     public static function getListPaging($params, $perPage = 10)
     {
         $cond = self::filterParams($params);
-
-        return self::where($cond)->paginate($perPage);
+        
+        return self::where($cond)->orderBy('updated_at','DESC')->paginate($perPage);
     }
 
 
