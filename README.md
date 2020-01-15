@@ -77,15 +77,15 @@ The generated file list, blue represents a new file, red represents an existing 
 
 For example, if the specified Model namespace is `App\Models\Admin\Users`, then the generated directory structure is:
 ```
-    .app
-    ├── Models
-    │ └── Admin
-    │ ├── UsersModel.php
-    │ └── Users.php
-    └── Observers
-     Model── Models
-     └── Admin
-     └── UsersObserver.php
+    .app
+    ├── Models
+    │   └── Admin
+    │       ├── UsersModel.php
+    │       └── Users.php
+    └── Observers
+        └── Models
+            └── Admin
+                └── UsersObserver.php
 
 ```
 Through the above structure, we can discover the relationship between the namespace and the directory.
@@ -110,34 +110,34 @@ Controller name (including namespace)
 
 If the Controller class is specified as `App\Http\Controllers\Admin\UsersController` and the associated Model is` App\Models\Admin\Users`, the generated directory structure is:
 ```
-    app
-    ├── Http
-    │ └── Controllers
-    │ └ ── Admin
-    │ │ ├── RenderController.php
-    │ Users Users── UsersController.php
-    ├── Models
-    │ └── Admin
-    │ ├── UsersModel.php
-    │ └── Users.php
-    └── Observers
-     Model── Models
-     └── Admin
-     └── UsersObserver.php
+    app
+    ├── Http
+    │   └── Controllers
+    │       └── Admin
+    │           ├── RenderController.php
+    │           └── UsersController.php
+    ├── Models
+    │   └── Admin
+    │       ├── UsersModel.php
+    │       └── Users.php
+    └── Observers
+        └── Models
+            └── Admin
+                └── UsersObserver.php
 ```
 
 And the generated view files
 ```
 .resources
-    └── views
-        └── admin
-         ├ ──── layouts
-         │ │ default── default.blade.php
-         Users ──── users
-         ├── create.blade.php
-         ├── detail.blade.php
-         ├── edit.blade.php
-         └── list.blade.php
+    └── views
+        └── admin
+            ├── layouts
+            │   └── default.blade.php
+            └── users
+                ├── create.blade.php
+                ├── detail.blade.php
+                ├── edit.blade.php
+                └── list.blade.php
 ```
 
 Through the above structure, we can discover the relationship between the namespace and the directory.
