@@ -1,11 +1,5 @@
 # Laravel-Gii 可视化代码生成工具  CRUD +GUI 
 
-> Laravel Gii 为中小型项目快速创建管理后台，提供了一种新的可能。使用的过程中，你会发现很轻量，自由度很高。
-> 
-> 特别是熟悉iView的开发者，在生成的页面上，可以根据自己的需求，自定义页面，将默认Input修改为其他功能丰富的iView组件
-> 
-> 感谢支持 ^ ^ 
-
 [![Packagist Version](https://img.shields.io/packagist/v/sunshinev/laravel-gii)](https://packagist.org/packages/sunshinev/laravel-gii)
 [![Travis (.com)](https://img.shields.io/travis/com/sunshinev/laravel-gii)](https://travis-ci.com/sunshinev/laravel-gii/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/sunshinev/laravel-gii)
@@ -14,18 +8,35 @@
 ![GitHub stars](https://img.shields.io/github/stars/sunshinev/laravel-gii?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/sunshinev/laravel-gii?style=social)
 
-适用于快速B端后台开发，根据MySQL的表结构生成对应的Model、Observer、Controller、View、Route等相关项目文件
+
+> Laravel Gii 为中小型项目快速创建管理后台，提供了一种新的可能。使用的过程中，你会发现很轻量，自由度很高，内部实现逻辑简单。
+> 
+> 特别是熟悉iView的开发者，在通过Gii生成的页面上，可以根据自己的需求自定义页面，通过修改默认Input组件为其他功能丰富的iView组件，可以来构造更加复杂的管理页面。
+> 
+> 你会发现它没有提供用户登录、权限功能，转而只是提供更加轻量化的页面创建，这点会让很多开发者们感到更加舒适，可以自由灵活的调整、自定义页面，来实现不同的能力。
+> 
+> 感谢支持，欢迎在Issue提出意见
+> 
+> 开始体验吧
+
 
 [![e1daf65668566cd8f7dd417211820a091576311651.jpg](https://github.com/sunshinev/remote_pics/raw/master/e1daf65668566cd8f7dd417211820a091576311651.jpg)](https://sunshinev.github.io/laravel-gii-home/index.html)
 
 [TOC]
+
+## 原理
+
+1. 通过解析MySQL的数据表结构，来提取字段、以及类型，并填充到`stub`模板。
+2. 生成对应的Model、Observer、Controller、View、Route等相关项目文件。
+3. 根据MySQL表结构生成Model
+4. 根据Model生成Controller
 
 ## 官网
 
 https://sunshinev.github.io/laravel-gii-home
 
 ## 注意
-因为是解析MySQL的表结构，并且根据字段生成模板，所以目前生成的Model类时只支持MySQL，但是CRUD可以使用支持mongo和MySQL两种connection。
+因为是解析MySQL的表结构，并且根据字段生成模板，所以目前生成的Model类时只支持MySQL，但是生成的CRUD管理后台，可以使用支持mongo和MySQL两种connection。
 
 MySQL表结构请保证`id`,`created_at`,`updated_at`三个字段必须存在。
 
@@ -46,7 +57,10 @@ php artisan vendor:publish  --tag laravel-gii
 
 
 ### 访问
-`http:[domain]/gii/model`
+在发布完成后，已经进行了路由的注册，可以通过下面的路由访问Gii页面
+```
+http:[domain]/gii/model
+```
 
 
 ## 操作说明
@@ -59,11 +73,24 @@ php artisan vendor:publish  --tag laravel-gii
 2. Model类名（想要创建模型类，包含命名空间）
 3. 模型继承的父类（如果是Mongo可以继承`Jenssegers\Mongodb\Eloquent\Model`，MySQL用`Illuminate\Database\Eloquent\Model`）
 
-
 生成的文件列表，蓝色代表全新文件，红色代表已有文件但是存在不同，白色代表已有文件。
 
-![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
+比如指定生成的Model命名空间为`App\Models\Admin\Users`，那么生成的目录结构为:
+```
+    .app
+    ├── Models
+    │   └── Admin
+    │       ├── UsersModel.php
+    │       └── Users.php
+    └── Observers
+        └── Models
+            └── Admin
+                └── UsersObserver.php
 
+```
+通过上面的结构，我们可以发现命名空间与目录之间的关系。
+
+![image](https://github.com/sunshinev/remote_pics/raw/master/laravel-gii/gii-model-preview.gif)
 
 
 ### 生成CRUD
@@ -81,7 +108,52 @@ CRUD的创建，需要依赖之前创建的模型。
 1. 控制器名称（包含命名空间）
 2. 之前创建的模型类
 
+如果指定Controller的类为`App\Http\Controllers\Admin\UsersController` ，以及关联的Model为`App\Models\Admin\Users`，那么生成的目录结构为:
+```
+    app
+    ├── Http
+    │   └── Controllers
+    │       └── Admin
+    │           ├── RenderController.php
+    │           └── UsersController.php
+    ├── Models
+    │   └── Admin
+    │       ├── UsersModel.php
+    │       └── Users.php
+    └── Observers
+        └── Models
+            └── Admin
+                └── UsersObserver.php
+```
+
+以及生成的视图文件
+```
+.resources
+    └── views
+        └── admin
+            ├── layouts
+            │   └── default.blade.php
+            └── users
+                ├── create.blade.php
+                ├── detail.blade.php
+                ├── edit.blade.php
+                └── list.blade.php
+```
+
+通过上面的结构，我们可以发现命名空间与目录之间的关系。会发现`admin`实际想当于`modules`，通过模块化的概念，来划分功能。
+
 ![85bce766f1a574d97ac931c8b98c29591576222771.jpg](https://github.com/sunshinev/remote_pics/raw/master/85bce766f1a574d97ac931c8b98c29591576222771.jpg)
+
+#### 如何访问CRUD?
+
+CRUD的路由会自动添加到路由文件中，根据Controller的命名空间`App\Http\Controllers\Admin\UsersController`会生成如下的路由，所以请直接访问路由
+```
+Route::get('/admin/layout', 'Admin\RenderController@index');
+Route::get('/admin/layout/render', 'Admin\RenderController@render');
+```
+
+
+
 
 ## 特性
 #### MySQL列表加载
@@ -157,7 +229,6 @@ Vue.use(ViewUI);
 
 #### 关于Gii的iview.min.js
 请参考 https://github.com/sunshinev/ViewUI 项目，Fork后做了细微调整
-
 
 
 ## 相关资料
