@@ -156,6 +156,9 @@
                 },
                 @endif
                 @endforeach
+                getActiveName: function() {
+                    return 'crud'
+                }
             },
             methods: {
                 openModal(index) {

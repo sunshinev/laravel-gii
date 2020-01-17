@@ -165,6 +165,9 @@
                 },
                 @endif
                 @endforeach
+                getActiveName: function() {
+                    return 'model'
+                }
             },
             methods: {
                 openModal(index) {
