@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Laravel gii</title>
-    {{--<link rel="stylesheet" href="{{URL::asset('gii_assets/styles/iview.css')}}">--}}
+    <link rel="stylesheet" href="{{URL::asset('gii_assets/styles/iview.css')}}">
 </head>
 <body>
 <style scoped>
