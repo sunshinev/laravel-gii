@@ -9,7 +9,7 @@
 namespace Sunshinev\Gii\Business;
 
 /**
- * Generate CRUD 
+ * Generate CRUD
  */
 class ControllerBusiness extends GenerateBusiness
 {
@@ -111,7 +111,7 @@ class ControllerBusiness extends GenerateBusiness
         // /account-book/api/manage/user/list
         $urlPath = parse_url(config('app.url'))['path'] ?? '';
         // project
-        $this->project = substr($urlPath, strpos($urlPath, '/'));
+        $this->project = trim(substr($urlPath, strpos($urlPath, '/')),'/');
 
         $this->m2cPath = $this->getM2cPath();
 
@@ -149,7 +149,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleController()
     {
-        $stubFile = __DIR__ . '/../stubs/controller.stub';
+        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'controller.stub']);
 
         // model
         $modelClass     = $this->modelClass . 'Model';
@@ -171,7 +171,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleRender()
     {
-        $stubFile = __DIR__ . '/../stubs/render.stub';
+        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'render.stub']);
 
         $m2              = $this->m2 ? '\\' . $this->m2 : '';
         $renderNamespace = 'App\\Http\\Controllers' . $m2;
@@ -189,7 +189,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsList()
     {
-        $stubFile = __DIR__ . '/../stubs/views/list.stub';
+        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs','views', 'list.stub']);
 
         // Get attributes + key
         $attributes = $this->model->getAttributes();
@@ -225,7 +225,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsEdit()
     {
-        $stubFile = __DIR__ . '/../stubs/views/edit.stub';
+        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'views', 'edit.stub']);
 
         $attributes = $this->model->getAttributes();
 
@@ -254,7 +254,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsDetail()
     {
-        $stubFile = __DIR__ . '/../stubs/views/detail.stub';
+        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'views', 'detail.stub']);
 
         $attributes = $this->model->getAttributes();
 
@@ -282,7 +282,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsCreate()
     {
-        $stubFile = __DIR__ . '/../stubs/views/create.stub';
+        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'views', 'create.stub']);
 
         $attributes = $this->model->getAttributes();
 
@@ -311,7 +311,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsLayoutDefault()
     {
-        $stubFile = __DIR__ . '/../stubs/views/layout_default.stub';
+        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'views', 'layout_default.stub']);
 
 
         $paths = ['list', 'create', 'detail', 'edit'];
@@ -325,7 +325,7 @@ class ControllerBusiness extends GenerateBusiness
             $routes .= "{
                     name: '{$this->controllerClassMini}_{$p}',
                     path: '/{$this->controllerClassMini}/{$p}',
-                    url: '{$projectPath}{$m2Path}/layout/render?path=/{$this->controllerClassMini}/{$p}'
+                    url: '" . str_replace(DIRECTORY_SEPARATOR, '/', "{$projectPath}{$m2Path}/layout/render?path=/{$this->controllerClassMini}/{$p}") . "'
                 },\n";
         }
 
@@ -356,11 +356,11 @@ class ControllerBusiness extends GenerateBusiness
         // api routes
         $apiRoutes = [];
 
-        $m2cPath = $this->m2cPath ? '/' . $this->m2cPath : '';
+        $m2cPath = $this->m2cPath ? DIRECTORY_SEPARATOR . $this->m2cPath : '';
 
         $controller = str_replace('App\\Http\\Controllers\\', '', $this->controllerClassName);
         foreach ($this->actions as $name => $action) {
-            $apiRoutes[] = "Route::any('{$m2cPath}/{$name}', '{$controller}@{$action}');";
+            $apiRoutes[] = "Route::any('" . str_replace(DIRECTORY_SEPARATOR, '/', $m2cPath) . "/{$name}', '{$controller}@{$action}');";
         }
 
         $apiRoutesStr = join("\n", $apiRoutes) . "\n";
@@ -371,12 +371,12 @@ class ControllerBusiness extends GenerateBusiness
     private function handleWebRoute()
     {
 
-        $m2Path = $this->m2Path ? '/' . $this->m2Path : '';
+        $m2Path = $this->m2Path ? DIRECTORY_SEPARATOR . $this->m2Path : '';
         $m2     = $this->m2 ? $this->m2 . '\\' : '';
 
         $routes   = [];
-        $routes[] = "Route::get('{$m2Path}/layout', '{$m2}RenderController@index');";
-        $routes[] = "Route::get('{$m2Path}/layout/render', '{$m2}RenderController@render');";
+        $routes[] = "Route::get('" . str_replace(DIRECTORY_SEPARATOR, '/', $m2Path) . "/layout', '{$m2}RenderController@index');";
+        $routes[] = "Route::get('" . str_replace(DIRECTORY_SEPARATOR, '/', $m2Path) . "/layout/render', '{$m2}RenderController@render');";
 
         $routesStr = join("\n", $routes) . "\n";
 
@@ -389,21 +389,22 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function getApiUrl($api)
     {
-        $m2cPath = $this->m2cPath ? $this->m2cPath . '/' : '';
-        return "{$this->project}/api/{$m2cPath}" . $api;
+        $projectPath = $this->project ? '/' . $this->project : '';
+        $m2cPath = $this->m2cPath ? $this->m2cPath . DIRECTORY_SEPARATOR : '';
+        return "{$projectPath}/api/" . str_replace(DIRECTORY_SEPARATOR, '/', $m2cPath) . $api;
     }
 
     private function getM2cPath()
     {
         $m2Path = $this->getM2Path();
-        $m2Path = $m2Path ? $m2Path . '/' : '';
+        $m2Path = $m2Path ? $m2Path . DIRECTORY_SEPARATOR : '';
 
         return $m2Path . $this->controllerClassMini;
     }
 
     private function getM2Path()
     {
-        return strtolower(str_replace('\\', '/', $this->getM2()));
+        return strtolower(str_replace('\\', DIRECTORY_SEPARATOR, $this->getM2()));
     }
 
     private function getM2()

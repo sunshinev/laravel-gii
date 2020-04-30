@@ -67,9 +67,9 @@ class ModelBusiness extends GenerateBusiness
     public function preview()
     {
         $stubFiles = [
-            'observer'   => __DIR__ . '/../stubs/observer.stub',
-            'base_model' => __DIR__ . '/../stubs/basemodel.stub',
-            'model'      => __DIR__ . '/../stubs/model.stub'
+            'observer'   => $this->pathJoin([__DIR__, '..', 'stubs', 'observer.stub']),
+            'base_model' => $this->pathJoin([__DIR__, '..', 'stubs', 'basemodel.stub']),
+            'model'      => $this->pathJoin([__DIR__, '..', 'stubs', 'model.stub']),
         ];
 
         // basic model

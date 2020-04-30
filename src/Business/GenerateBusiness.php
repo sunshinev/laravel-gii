@@ -10,16 +10,27 @@ namespace Sunshinev\Gii\Business;
 
 use SebastianBergmann\Diff\Differ;
 
+/**
+ * Class GenerateBusiness
+ * @package Sunshinev\Gii\Business
+ */
 class GenerateBusiness
 {
 
 
+    /**
+     * @param $namespace
+     * @param $class
+     * @param $fields
+     * @param $stubFilePath
+     * @return array
+     */
     public static function handleFile($namespace, $class, $fields, $stubFilePath)
     {
 
         $className = $namespace . '\\' . $class;
 
-        $defaultPath = str_replace('\\', '/', $namespace) . '/' . $class . '.php';
+        $defaultPath = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR . $class . '.php';
         // if class file do not exits, then  generate virtual path
         $virtualPath = base_path($defaultPath);
         $isNewFile   = file_exists($virtualPath) ? false : true;
@@ -121,11 +132,10 @@ class GenerateBusiness
         ];
     }
 
-
     public static function handleRouteFile($appendContent, $routeType)
     {
         // 根据控制器寻找view
-        $defaultPath = 'routes/' . $routeType . '.php';
+        $defaultPath = 'routes' .DIRECTORY_SEPARATOR. $routeType . '.php';
         $virtualPath = base_path($defaultPath);
 
         $isNewFile = file_exists($virtualPath) ? false : true;
@@ -211,6 +221,18 @@ class GenerateBusiness
         }
 
         return $files;
+    }
+
+
+    /**
+     *
+     *
+     * @param array $paths
+     * @return string
+     */
+    public function pathJoin($paths = [])
+    {
+        return join(DIRECTORY_SEPARATOR, $paths);
     }
 
 
