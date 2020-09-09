@@ -235,5 +235,19 @@ class GenerateBusiness
         return join(DIRECTORY_SEPARATOR, $paths);
     }
 
+    /**
+     * 返回stub文件路径
+     * @return string
+     */
+    public function getStubsPath()
+    {
+        $giiStubsPath = resource_path('gii_stubs');
+        if(file_exists($giiStubsPath)===true){
+            return $giiStubsPath;
+        }
+
+        return $this->pathJoin([__DIR__,'..','stubs']);
+    }
+
 
 }
