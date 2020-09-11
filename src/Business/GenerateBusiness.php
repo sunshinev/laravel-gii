@@ -29,8 +29,9 @@ class GenerateBusiness
     {
 
         $className = $namespace . '\\' . $class;
+        $classFilePath = lcfirst($namespace);
 
-        $defaultPath = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR . $class . '.php';
+        $defaultPath = str_replace('\\', DIRECTORY_SEPARATOR, $classFilePath) . DIRECTORY_SEPARATOR . $class . '.php';
         // if class file do not exits, then  generate virtual path
         $virtualPath = base_path($defaultPath);
         $isNewFile   = file_exists($virtualPath) ? false : true;
@@ -233,6 +234,20 @@ class GenerateBusiness
     public function pathJoin($paths = [])
     {
         return join(DIRECTORY_SEPARATOR, $paths);
+    }
+
+    /**
+     * 返回stub文件路径
+     * @return string
+     */
+    public function getStubsPath()
+    {
+        $giiStubsPath = resource_path('gii_stubs');
+        if(file_exists($giiStubsPath)===true){
+            return $giiStubsPath;
+        }
+
+        return $this->pathJoin([__DIR__,'..','stubs']);
     }
 
 

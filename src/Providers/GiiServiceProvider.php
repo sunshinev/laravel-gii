@@ -31,5 +31,9 @@ class GiiServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../assets' => public_path('/gii_assets'),
         ], 'laravel-gii');
+
+        $this->publishes([
+            __DIR__.'/../stubs' => resource_path('/gii_stubs'),
+        ], 'laravel-gii-stubs');
     }
 }

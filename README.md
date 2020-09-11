@@ -230,6 +230,11 @@ Vue.use(ViewUI);
 #### 关于Gii的iview.min.js
 请参考 https://github.com/sunshinev/ViewUI 项目，Fork后做了细微调整
 
+#### 代码模板文件修改
+发布模板文件到项目资源中, 修改模板文件即可
+```
+php artisan vendor:publish --tag=laravel-gii-stubs
+```
 
 ## 相关资料
 

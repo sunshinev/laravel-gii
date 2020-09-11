@@ -149,7 +149,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleController()
     {
-        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'controller.stub']);
+        $stubFile = $this->pathJoin([$this->getStubsPath(), 'controller.stub']);
 
         // model
         $modelClass     = $this->modelClass . 'Model';
@@ -171,7 +171,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleRender()
     {
-        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'render.stub']);
+        $stubFile = $this->pathJoin([$this->getStubsPath(), 'render.stub']);
 
         $m2              = $this->m2 ? '\\' . $this->m2 : '';
         $renderNamespace = 'App\\Http\\Controllers' . $m2;
@@ -189,7 +189,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsList()
     {
-        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs','views', 'list.stub']);
+        $stubFile = $this->pathJoin([$this->getStubsPath(),'views', 'list.stub']);
 
         // Get attributes + key
         $attributes = $this->model->getAttributes();
@@ -225,7 +225,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsEdit()
     {
-        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'views', 'edit.stub']);
+        $stubFile = $this->pathJoin([$this->getStubsPath(), 'views', 'edit.stub']);
 
         $attributes = $this->model->getAttributes();
 
@@ -254,7 +254,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsDetail()
     {
-        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'views', 'detail.stub']);
+        $stubFile = $this->pathJoin([$this->getStubsPath(), 'views', 'detail.stub']);
 
         $attributes = $this->model->getAttributes();
 
@@ -282,7 +282,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsCreate()
     {
-        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'views', 'create.stub']);
+        $stubFile = $this->pathJoin([$this->getStubsPath(), 'views', 'create.stub']);
 
         $attributes = $this->model->getAttributes();
 
@@ -311,7 +311,7 @@ class ControllerBusiness extends GenerateBusiness
      */
     private function handleViewsLayoutDefault()
     {
-        $stubFile = $this->pathJoin([__DIR__, '..', 'stubs', 'views', 'layout_default.stub']);
+        $stubFile = $this->pathJoin([$this->getStubsPath(), 'views', 'layout_default.stub']);
 
 
         $paths = ['list', 'create', 'detail', 'edit'];
